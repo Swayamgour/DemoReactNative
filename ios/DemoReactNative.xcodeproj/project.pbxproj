@@ -11,6 +11,24 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		61F2455CDBBF499F8864FBF6 /* Switzer-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1E07DE132C49432E8D3B97DF /* Switzer-Black.otf */; };
+		54AE569B8B44465BA8DCFC77 /* Switzer-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9FF2F7B335454EC98B106418 /* Switzer-BlackItalic.otf */; };
+		6D4BC7015DF7426DB9B6B0E1 /* Switzer-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 258FA9DCAFE84C5A9FFF26C4 /* Switzer-Bold.otf */; };
+		14805C6B8E534D25ADF073B4 /* Switzer-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6E9C99A0BA9F48BC8D210989 /* Switzer-BoldItalic.otf */; };
+		BC5AEC03EC5642F0B98DD302 /* Switzer-Extrabold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF22E28879154B039664EBC2 /* Switzer-Extrabold.otf */; };
+		083CD486E3A74113833A7917 /* Switzer-ExtraboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A7BC592BF66F48D8BFB03EEA /* Switzer-ExtraboldItalic.otf */; };
+		12A81716F1A94119895CD632 /* Switzer-Extralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9F4AF69B8DE5467CA8E62B7A /* Switzer-Extralight.otf */; };
+		C7104C823063440BAFAE4A4A /* Switzer-ExtralightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A22FD0AB50EA4DC38C3D1543 /* Switzer-ExtralightItalic.otf */; };
+		978DB10D666C4ED4ABF34AB0 /* Switzer-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 48D01342EDE7480A9A0AF18A /* Switzer-Italic.otf */; };
+		0F3817E557FF4E82A4CC6712 /* Switzer-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE835093E3FC4B7AB8CB57D3 /* Switzer-Light.otf */; };
+		0409192D415441F184D57393 /* Switzer-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5B78C3119EE24FD0A463752E /* Switzer-LightItalic.otf */; };
+		9C12E8AEBD8C4213B9A41DAC /* Switzer-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = AF6B82E3AAC74009A9543769 /* Switzer-Medium.otf */; };
+		C4E21847B0964B9FB6B8C928 /* Switzer-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 391A820DD0F240C2887EAC94 /* Switzer-MediumItalic.otf */; };
+		B7165A96C48C4BE8A9AB832D /* Switzer-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = A43BFCEFCBD64494B338AAFB /* Switzer-Regular.otf */; };
+		0D6ECC9B5DC44F949248C9E1 /* Switzer-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EDFBCF3653EF4994BAFF0E0D /* Switzer-Semibold.otf */; };
+		F2D720DDD8314D10A023B358 /* Switzer-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0FAA95B5898B4366BD0FBF93 /* Switzer-SemiboldItalic.otf */; };
+		B767C36F79AA4243B24B402B /* Switzer-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = A0161334E0154E2DBD2871ED /* Switzer-Thin.otf */; };
+		C66BDE429231458CADA51D04 /* Switzer-ThinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 79FA4909E83F423E9A20F082 /* Switzer-ThinItalic.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +53,24 @@
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = DemoReactNative/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = DemoReactNative/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		1E07DE132C49432E8D3B97DF /* Switzer-Black.otf */ = {isa = PBXFileReference; name = "Switzer-Black.otf"; path = "../src/assets/OTF/Switzer-Black.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9FF2F7B335454EC98B106418 /* Switzer-BlackItalic.otf */ = {isa = PBXFileReference; name = "Switzer-BlackItalic.otf"; path = "../src/assets/OTF/Switzer-BlackItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		258FA9DCAFE84C5A9FFF26C4 /* Switzer-Bold.otf */ = {isa = PBXFileReference; name = "Switzer-Bold.otf"; path = "../src/assets/OTF/Switzer-Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6E9C99A0BA9F48BC8D210989 /* Switzer-BoldItalic.otf */ = {isa = PBXFileReference; name = "Switzer-BoldItalic.otf"; path = "../src/assets/OTF/Switzer-BoldItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DF22E28879154B039664EBC2 /* Switzer-Extrabold.otf */ = {isa = PBXFileReference; name = "Switzer-Extrabold.otf"; path = "../src/assets/OTF/Switzer-Extrabold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A7BC592BF66F48D8BFB03EEA /* Switzer-ExtraboldItalic.otf */ = {isa = PBXFileReference; name = "Switzer-ExtraboldItalic.otf"; path = "../src/assets/OTF/Switzer-ExtraboldItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9F4AF69B8DE5467CA8E62B7A /* Switzer-Extralight.otf */ = {isa = PBXFileReference; name = "Switzer-Extralight.otf"; path = "../src/assets/OTF/Switzer-Extralight.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A22FD0AB50EA4DC38C3D1543 /* Switzer-ExtralightItalic.otf */ = {isa = PBXFileReference; name = "Switzer-ExtralightItalic.otf"; path = "../src/assets/OTF/Switzer-ExtralightItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		48D01342EDE7480A9A0AF18A /* Switzer-Italic.otf */ = {isa = PBXFileReference; name = "Switzer-Italic.otf"; path = "../src/assets/OTF/Switzer-Italic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DE835093E3FC4B7AB8CB57D3 /* Switzer-Light.otf */ = {isa = PBXFileReference; name = "Switzer-Light.otf"; path = "../src/assets/OTF/Switzer-Light.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5B78C3119EE24FD0A463752E /* Switzer-LightItalic.otf */ = {isa = PBXFileReference; name = "Switzer-LightItalic.otf"; path = "../src/assets/OTF/Switzer-LightItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		AF6B82E3AAC74009A9543769 /* Switzer-Medium.otf */ = {isa = PBXFileReference; name = "Switzer-Medium.otf"; path = "../src/assets/OTF/Switzer-Medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		391A820DD0F240C2887EAC94 /* Switzer-MediumItalic.otf */ = {isa = PBXFileReference; name = "Switzer-MediumItalic.otf"; path = "../src/assets/OTF/Switzer-MediumItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A43BFCEFCBD64494B338AAFB /* Switzer-Regular.otf */ = {isa = PBXFileReference; name = "Switzer-Regular.otf"; path = "../src/assets/OTF/Switzer-Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		EDFBCF3653EF4994BAFF0E0D /* Switzer-Semibold.otf */ = {isa = PBXFileReference; name = "Switzer-Semibold.otf"; path = "../src/assets/OTF/Switzer-Semibold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0FAA95B5898B4366BD0FBF93 /* Switzer-SemiboldItalic.otf */ = {isa = PBXFileReference; name = "Switzer-SemiboldItalic.otf"; path = "../src/assets/OTF/Switzer-SemiboldItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A0161334E0154E2DBD2871ED /* Switzer-Thin.otf */ = {isa = PBXFileReference; name = "Switzer-Thin.otf"; path = "../src/assets/OTF/Switzer-Thin.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		79FA4909E83F423E9A20F082 /* Switzer-ThinItalic.otf */ = {isa = PBXFileReference; name = "Switzer-ThinItalic.otf"; path = "../src/assets/OTF/Switzer-ThinItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +129,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				CEC008FBC48148D8BF750055 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -115,6 +152,32 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		CEC008FBC48148D8BF750055 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				1E07DE132C49432E8D3B97DF /* Switzer-Black.otf */,
+				9FF2F7B335454EC98B106418 /* Switzer-BlackItalic.otf */,
+				258FA9DCAFE84C5A9FFF26C4 /* Switzer-Bold.otf */,
+				6E9C99A0BA9F48BC8D210989 /* Switzer-BoldItalic.otf */,
+				DF22E28879154B039664EBC2 /* Switzer-Extrabold.otf */,
+				A7BC592BF66F48D8BFB03EEA /* Switzer-ExtraboldItalic.otf */,
+				9F4AF69B8DE5467CA8E62B7A /* Switzer-Extralight.otf */,
+				A22FD0AB50EA4DC38C3D1543 /* Switzer-ExtralightItalic.otf */,
+				48D01342EDE7480A9A0AF18A /* Switzer-Italic.otf */,
+				DE835093E3FC4B7AB8CB57D3 /* Switzer-Light.otf */,
+				5B78C3119EE24FD0A463752E /* Switzer-LightItalic.otf */,
+				AF6B82E3AAC74009A9543769 /* Switzer-Medium.otf */,
+				391A820DD0F240C2887EAC94 /* Switzer-MediumItalic.otf */,
+				A43BFCEFCBD64494B338AAFB /* Switzer-Regular.otf */,
+				EDFBCF3653EF4994BAFF0E0D /* Switzer-Semibold.otf */,
+				0FAA95B5898B4366BD0FBF93 /* Switzer-SemiboldItalic.otf */,
+				A0161334E0154E2DBD2871ED /* Switzer-Thin.otf */,
+				79FA4909E83F423E9A20F082 /* Switzer-ThinItalic.otf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -185,6 +248,24 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				61F2455CDBBF499F8864FBF6 /* Switzer-Black.otf in Resources */,
+				54AE569B8B44465BA8DCFC77 /* Switzer-BlackItalic.otf in Resources */,
+				6D4BC7015DF7426DB9B6B0E1 /* Switzer-Bold.otf in Resources */,
+				14805C6B8E534D25ADF073B4 /* Switzer-BoldItalic.otf in Resources */,
+				BC5AEC03EC5642F0B98DD302 /* Switzer-Extrabold.otf in Resources */,
+				083CD486E3A74113833A7917 /* Switzer-ExtraboldItalic.otf in Resources */,
+				12A81716F1A94119895CD632 /* Switzer-Extralight.otf in Resources */,
+				C7104C823063440BAFAE4A4A /* Switzer-ExtralightItalic.otf in Resources */,
+				978DB10D666C4ED4ABF34AB0 /* Switzer-Italic.otf in Resources */,
+				0F3817E557FF4E82A4CC6712 /* Switzer-Light.otf in Resources */,
+				0409192D415441F184D57393 /* Switzer-LightItalic.otf in Resources */,
+				9C12E8AEBD8C4213B9A41DAC /* Switzer-Medium.otf in Resources */,
+				C4E21847B0964B9FB6B8C928 /* Switzer-MediumItalic.otf in Resources */,
+				B7165A96C48C4BE8A9AB832D /* Switzer-Regular.otf in Resources */,
+				0D6ECC9B5DC44F949248C9E1 /* Switzer-Semibold.otf in Resources */,
+				F2D720DDD8314D10A023B358 /* Switzer-SemiboldItalic.otf in Resources */,
+				B767C36F79AA4243B24B402B /* Switzer-Thin.otf in Resources */,
+				C66BDE429231458CADA51D04 /* Switzer-ThinItalic.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
