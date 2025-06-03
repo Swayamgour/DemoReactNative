@@ -22,6 +22,7 @@ import RegistrationPage from './src/screens/RegistrationPage'
 import EventDetailScreen from './src/screens/EventDetailScreen '
 import ProfilePage from './src/screens/ProfilePage'
 import NotificationPage from './src/screens/NotificationPage'
+import SplashScreen from './src/components/SplashScreen'
 
 const Stack = createNativeStackNavigator()
 
@@ -33,7 +34,12 @@ export default function App () {
 
         <NavigationContainer>
           {/* <AppTabs /> */}
-          <Stack.Navigator initialRouteName='DrawerNavigation'>
+          <Stack.Navigator initialRouteName='Splash'>
+            <Stack.Screen
+              name='Splash'
+              component={SplashScreen}
+              options={{headerShown: false}}
+            />
             <Stack.Screen
               name='Welcome'
               component={WelcomePage}

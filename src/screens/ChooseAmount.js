@@ -9,9 +9,10 @@ import {
   ScrollView,
   Dimensions,
 } from 'react-native'
-import Modal from 'react-native-modal'
+
 import {useNavigation} from '@react-navigation/native' // ✅ Import the hook
 import * as Animatable from 'react-native-animatable'
+import BottomDrawer from '../components/BottomDrawer'
 
 const {width} = Dimensions.get('window')
 
@@ -133,24 +134,7 @@ const ChooseAmount = () => {
           style={styles.continueButton}>
           <Text style={styles.continueButtonText}>Continue</Text>
         </TouchableOpacity>
-
-        <View style={styles.containerDrawer}>
-          {/* <Button title='Open Drawer' onPress={() => setIsVisible(true)} /> */}
-
-          <Modal
-            isVisible={isVisible}
-            onBackdropPress={() => setIsVisible(false)}
-            useNativeDriver={true}
-            animationIn='slideInUp'
-            animationOut='slideOutDown'
-            animationInTiming={300}
-            animationOutTiming={300}
-            style={styles.modal}>
-            <View style={styles.drawer}>
-              <Text style={styles.text}>Smooth Bottom Drawer</Text>
-            </View>
-          </Modal>
-        </View>
+        <BottomDrawer isVisible={isVisible} setIsVisible={setIsVisible} />
       </SafeAreaView>
     </>
   )
@@ -323,27 +307,5 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
     fontWeight: '700',
-  },
-
-  containerDrawer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  modal: {
-    justifyContent: 'flex-end',
-    margin: 0,
-  },
-  //   modal: {justifyContent: 'flex-end', margin: 0},
-  drawer: {
-    backgroundColor: 'white',
-    padding: 20,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    minHeight: 200,
-  },
-  text: {
-    fontSize: 18,
-    textAlign: 'center',
   },
 })
