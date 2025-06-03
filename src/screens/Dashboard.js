@@ -8,6 +8,7 @@ import SwiperImage from '../components/SwiperImage'
 import CardOfEvent from '../components/CardOfEvent'
 import Footer from '../components/Footer'
 import AppTabs from './AppTabs'
+import * as Animatable from 'react-native-animatable'
 
 function Dashboard () {
   const backPressedOnce = useRef(false)
@@ -41,9 +42,13 @@ function Dashboard () {
     <>
       <Navbar />
       <SwiperImage />
-      <View style={{flex: 1, backgroundColor: '#fff'}}>
+      <Animatable.View
+        animation='fadeInUp'
+        duration={800}
+        delay={500}
+        style={{flex: 1, backgroundColor: '#fff'}}>
         <CardOfEvent />
-      </View>
+      </Animatable.View>
       {/* <CardOfEvent /> */}
     </>
   )

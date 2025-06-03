@@ -61,7 +61,7 @@ const RegistrationPage = ({navigation}) => {
         Password: password,
       }).unwrap()
 
-      console.log('Registration successful:', response)
+      // console.log('Registration successful:', response)
       alert('Registration successful! Please login.')
       navigation.navigate('Login')
     } catch (error) {

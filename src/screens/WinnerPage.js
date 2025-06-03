@@ -102,7 +102,7 @@ const WinnerPage = () => {
   }
 
   const renderCategoryButton = (category, label, icon) => (
-    <Animatable.View animation='fadeInRight' duration={1000}>
+    <Animatable.View animation='fadeInRight' duration={1000} delay={500}>
       <TouchableOpacity
         style={[
           styles.categoryButton,
@@ -199,7 +199,7 @@ const WinnerPage = () => {
         </ScrollView>
 
         {/* Winner Details Modal */}
-        {console.log(selectedWinner)}
+        {/* {console.log(selectedWinner)} */}
         {selectedWinner && (
           <View style={styles.modalBackdrop}>
             <Animated.View

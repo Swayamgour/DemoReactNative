@@ -38,14 +38,14 @@ const WelcomePage = ({navigation}) => {
       const token = await AsyncStorage.getItem('authToken')
       // setTimeout(() => {
       if (token) {
-        console.log('home')
+        // console.log('home')
         // navigation.navigate('Home') // token exists → go to Home
         navigation.reset({
           index: 0,
           routes: [{name: 'DrawerNavigation'}],
         })
       } else {
-        console.log('login')
+        // console.log('login')
 
         navigation.navigate('Login') // no token → go to Login
       }

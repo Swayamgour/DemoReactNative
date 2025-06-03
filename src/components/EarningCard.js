@@ -54,9 +54,9 @@ const EarningCard = ({
   return (
     <TouchableOpacity onPress={handlePress} activeOpacity={0.85}>
       <Animatable.View
-        animation='fadeInUp'
-        duration={600}
-        delay={index * 150}
+        // animation='fadeInUp'
+        // duration={600}
+        // delay={index * 150}
         useNativeDriver
         // onPress={handlePress}
         style={styles.card}>

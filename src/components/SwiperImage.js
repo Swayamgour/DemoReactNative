@@ -8,7 +8,7 @@ const {width} = Dimensions.get('window')
 const SwiperImage = () => {
   return (
     <Animatable.View
-      animation='fadeInDown'
+      animation='fadeInUp'
       duration={1000}
       style={styles.container}>
       <Swiper

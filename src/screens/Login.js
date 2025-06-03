@@ -40,13 +40,13 @@ const Login = ({navigation}) => {
     }
 
     try {
-      console.time('login')
+      // console.time('login')
       // const response = await login({mobile: phone, otp: otp}).unwrap()
       const response = await login({Number: phone, MPIN: otp}).unwrap()
 
-      console.timeEnd('login')
+      // console.timeEnd('login')
 
-      console.log('Login response:', response)
+      // console.log('Login response:', response)
 
       // Save token in AsyncStorage
       if (response?.Token) {
