@@ -23,15 +23,17 @@ const Login = ({navigation}) => {
   const [phone, setPhone] = useState('')
   const [otp, setOtp] = useState('')
 
-  const [login, {isLoading}] = useLoginUserMutation()
+  const [login, {isLoading}, result] = useLoginUserMutation()
+
+  // console.log(result)
 
   // console.log(checkToken())
 
   const handleLogin = async () => {
-    navigation.reset({
-      index: 0,
-      routes: [{name: 'DrawerNavigation'}],
-    })
+    // navigation.reset({
+    //   index: 0,
+    //   routes: [{name: 'DrawerNavigation'}],
+    // })
     if (phone.length < 10 || otp.length < 4) {
       alert('Please enter valid phone number and OTP')
       return
@@ -39,7 +41,9 @@ const Login = ({navigation}) => {
 
     try {
       console.time('login')
+      // const response = await login({mobile: phone, otp: otp}).unwrap()
       const response = await login({Number: phone, MPIN: otp}).unwrap()
+
       console.timeEnd('login')
 
       console.log('Login response:', response)
@@ -60,12 +64,7 @@ const Login = ({navigation}) => {
     }
   }
 
-  return isLoading ? (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Loading...</Text>
-      <ActivityIndicator size='large' color='#171449' />
-    </View>
-  ) : (
+  return (
     <View style={styles.container}>
       {/* Top Background Box */}
 
@@ -129,21 +128,17 @@ const Login = ({navigation}) => {
             {/* <View style={styles.underline} /> */}
           </View>
 
-          <TouchableOpacity
-            // onPress={() => navigation.navigate('DrawerNavigation')}
-            onPress={handleLogin}
-            style={styles.otpButton}
-            // disabled={otp.length < 6}
-          >
-            <Text
-              style={styles.otpButtonText}
-              // onPress={() => navigation.navigate('Home')}
-            >
-              Log in
-            </Text>
-          </TouchableOpacity>
+          {isLoading ? (
+            <TouchableOpacity style={styles.otpButton}>
+              <Text style={styles.otpButtonText}>Loading...</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity onPress={handleLogin} style={styles.otpButton}>
+              <Text style={styles.otpButtonText}>Log in</Text>
+            </TouchableOpacity>
+          )}
 
-          <TouchableOpacity
+          {/* <TouchableOpacity
             // onPress={() => navigation.navigate('DrawerNavigation')}
             onPress={handleLogin}
             style={styles.registration}
@@ -153,6 +148,15 @@ const Login = ({navigation}) => {
               style={styles.registrationText}
               onPress={() => navigation.navigate('Registration')}>
               Registration
+            </Text>
+          </TouchableOpacity> */}
+
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Registration')}
+            style={styles.loginLink}>
+            <Text style={styles.loginLinkText}>
+              Create New Account{' '}
+              <Text style={styles.loginLinkBold}>Registration</Text>
             </Text>
           </TouchableOpacity>
         </View>
@@ -288,5 +292,17 @@ const styles = StyleSheet.create({
     color: '#171449',
     fontSize: 14,
     fontWeight: 'bold',
+  },
+  loginLink: {
+    alignItems: 'center',
+    marginTop: 15,
+  },
+  loginLinkText: {
+    color: '#666',
+    fontSize: 14,
+  },
+  loginLinkBold: {
+    fontWeight: 'bold',
+    color: '#171449',
   },
 })

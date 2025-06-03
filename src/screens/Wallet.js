@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {
   StyleSheet,
   Text,
@@ -7,29 +7,30 @@ import {
   SafeAreaView,
   Dimensions,
   Image,
-} from 'react-native';
+} from 'react-native'
 import {useNavigation} from '@react-navigation/native' // ✅ Import the hook
+import * as Animatable from 'react-native-animatable'
 
+const {width} = Dimensions.get('window')
 
-const {width} = Dimensions.get('window');
-
-function Wallet() {
-
-
-    const navigate = useNavigation()
+function Wallet () {
+  const navigate = useNavigation()
   return (
     <SafeAreaView style={styles.container}>
       {/* Top Content Area */}
-      <View style={styles.topContainer}>
+      <Animatable.View
+        duration={1000}
+        animation='fadeInUp'
+        style={styles.topContainer}>
         {/* Balance Card */}
         <View style={styles.card}>
           {/* Decorative Elements */}
           <View style={styles.circle1} />
           <View style={styles.circle2} />
-          
+
           <Text style={styles.balanceLabel}>Current Balance</Text>
           <Text style={styles.balanceAmount}>₹ 50.00</Text>
-          
+
           {/* Card Details */}
           <View style={styles.cardDetails}>
             <View style={styles.cardInfo}>
@@ -68,7 +69,8 @@ function Wallet() {
           </View> */}
 
           <View style={styles.transactionItem}>
-            <View style={[styles.transactionIcon, {backgroundColor: '#f0f8f0'}]}>
+            <View
+              style={[styles.transactionIcon, {backgroundColor: '#f0f8f0'}]}>
               <Text style={styles.iconText}>💵</Text>
             </View>
             <View style={styles.transactionDetails}>
@@ -91,19 +93,24 @@ function Wallet() {
             <Text style={styles.transactionAmount}>-₹ 320.00</Text>
           </View> */}
         </View>
-      </View>
+      </Animatable.View>
 
       {/* Bottom Button */}
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={()=>navigate.navigate('ChooseAmount')} style={[styles.actionButton, styles.addButton]}>
+      <Animatable.View
+        duration={1000}
+        animation='fadeInRight'
+        style={styles.buttonContainer}>
+        <TouchableOpacity
+          onPress={() => navigate.navigate('ChooseAmount')}
+          style={[styles.actionButton, styles.addButton]}>
           <Text style={styles.buttonText}>Add Money</Text>
         </TouchableOpacity>
-      </View>
+      </Animatable.View>
     </SafeAreaView>
-  );
+  )
 }
 
-export default Wallet;
+export default Wallet
 
 const styles = StyleSheet.create({
   container: {
@@ -268,4 +275,4 @@ const styles = StyleSheet.create({
   positiveAmount: {
     color: '#10B981',
   },
-});
+})

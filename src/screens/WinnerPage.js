@@ -1,37 +1,4 @@
-// import React from 'react'
-// import {View, Text} from 'react-native'
-// import Navbar from '../components/Navbar'
-// import Footer from '../components/Footer'
-
-// const WinnerPage = () => {
-//   return (
-//     <>
-//       <Navbar />
-//       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-//         <View
-//           style={{
-//             width: '80%',
-//             padding: 20,
-//             backgroundColor: '#f0f0f0',
-//             borderRadius: 10,
-//           }}>
-//           <View style={{alignItems: 'center'}}>
-//             <Text style={{fontSize: 24, color: '#171449'}}>
-//               Congratulations!
-//             </Text>
-//             <Text style={{fontSize: 18, color: '#555', marginTop: 10}}>
-//               You have won the event!
-//             </Text>
-//           </View>
-//         </View>
-//       </View>
-//     </>
-//   )
-// }
-
-// export default WinnerPage
-
-import React, { useState } from 'react';
+import React, {useState} from 'react'
 import {
   View,
   Text,
@@ -41,17 +8,19 @@ import {
   Image,
   Dimensions,
   Animated,
-  Easing
-} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import Icon2 from 'react-native-vector-icons/FontAwesome5';
+  Easing,
+} from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialIcons'
+import Icon2 from 'react-native-vector-icons/FontAwesome5'
+import Navbar from '../components/Navbar'
+import * as Animatable from 'react-native-animatable'
 
-const { width } = Dimensions.get('window');
+const {width} = Dimensions.get('window')
 
 const WinnerPage = () => {
-  const [activeCategory, setActiveCategory] = useState('all');
-  const [selectedWinner, setSelectedWinner] = useState(null);
-  const scaleValue = new Animated.Value(0);
+  const [activeCategory, setActiveCategory] = useState('all')
+  const [selectedWinner, setSelectedWinner] = useState(null)
+  const scaleValue = new Animated.Value(0)
 
   const winnersData = [
     {
@@ -107,21 +76,21 @@ const WinnerPage = () => {
       location: 'Sydney, Australia',
       category: 'other',
     },
-  ];
+  ]
 
-  const filteredWinners = winnersData.filter(winner => 
-    activeCategory === 'all' || winner.category === activeCategory
-  );
+  const filteredWinners = winnersData.filter(
+    winner => activeCategory === 'all' || winner.category === activeCategory,
+  )
 
-  const openWinnerDetails = (winner) => {
-    setSelectedWinner(winner);
+  const openWinnerDetails = winner => {
+    setSelectedWinner(winner)
     Animated.timing(scaleValue, {
       toValue: 1,
       duration: 300,
       easing: Easing.out(Easing.ease),
       useNativeDriver: true,
-    }).start();
-  };
+    }).start()
+  }
 
   const closeWinnerDetails = () => {
     Animated.timing(scaleValue, {
@@ -129,163 +98,200 @@ const WinnerPage = () => {
       duration: 200,
       easing: Easing.in(Easing.ease),
       useNativeDriver: true,
-    }).start(() => setSelectedWinner(null));
-  };
+    }).start(() => setSelectedWinner(null))
+  }
 
   const renderCategoryButton = (category, label, icon) => (
-    <TouchableOpacity
-      style={[
-        styles.categoryButton,
-        activeCategory === category && styles.activeCategory
-      ]}
-      onPress={() => setActiveCategory(category)}
-    >
-      <Icon2 name={icon} size={18} color={activeCategory === category ? '#fff' : '#171449'} />
-      <Text style={[
-        styles.categoryText,
-        activeCategory === category && styles.activeCategoryText
-      ]}>
-        {label}
-      </Text>
-    </TouchableOpacity>
-  );
+    <Animatable.View animation='fadeInRight' duration={1000}>
+      <TouchableOpacity
+        style={[
+          styles.categoryButton,
+          activeCategory === category && styles.activeCategory,
+        ]}
+        onPress={() => setActiveCategory(category)}>
+        <Icon2
+          name={icon}
+          size={18}
+          color={activeCategory === category ? '#fff' : '#171449'}
+        />
+        <Text
+          style={[
+            styles.categoryText,
+            activeCategory === category && styles.activeCategoryText,
+          ]}>
+          {label}
+        </Text>
+      </TouchableOpacity>
+    </Animatable.View>
+  )
 
-  const renderWinnerCard = (winner) => (
-    <TouchableOpacity 
-      key={winner.id} 
-      style={styles.winnerCard}
-      onPress={() => openWinnerDetails(winner)}
-    >
-      <View style={styles.cardHeader}>
-        <View style={styles.avatarPlaceholder}>
-          <Text style={styles.avatarText}>{winner.name.charAt(0)}</Text>
+  const renderWinnerCard = winner => (
+    <Animatable.View
+      animation='fadeInUp'
+      key={winner.id}
+      duration={800}
+      delay={500}>
+      <TouchableOpacity
+        key={winner.id}
+        style={styles.winnerCard}
+        // onPress={() => openWinnerDetails(winner)}
+      >
+        <View style={styles.cardHeader}>
+          <View style={styles.avatarPlaceholder}>
+            <Text style={styles.avatarText}>{winner.name.charAt(0)}</Text>
+          </View>
+          <View style={styles.winnerInfo}>
+            <Text style={styles.winnerName}>{winner.name}</Text>
+            <Text style={styles.winnerLocation}>
+              <Icon name='location-on' size={14} color='#171449' />
+              {winner.location || 'Remote'}
+            </Text>
+          </View>
+          <View style={styles.prizeBadge}>
+            <Text style={styles.prizeAmount}>{winner.amount}</Text>
+          </View>
         </View>
-        <View style={styles.winnerInfo}>
-          <Text style={styles.winnerName}>{winner.name}</Text>
-          <Text style={styles.winnerLocation}>
-            <Icon name="location-on" size={14} color="#171449" /> 
-            {winner.location || 'Remote'}
-          </Text>
+
+        <View style={styles.cardContent}>
+          <Text style={styles.prizeTitle}>{winner.prize}</Text>
+          <Text style={styles.winDate}>{winner.date}</Text>
         </View>
-        <View style={styles.prizeBadge}>
-          <Text style={styles.prizeAmount}>{winner.amount}</Text>
-        </View>
-      </View>
-      
-      <View style={styles.cardContent}>
-        <Text style={styles.prizeTitle}>{winner.prize}</Text>
-        <Text style={styles.winDate}>{winner.date}</Text>
-      </View>
-      
-      {/* <View style={styles.cardFooter}>
+
+        {/* <View style={styles.cardFooter}>
         <Text style={styles.viewDetails}>View Details →</Text>
       </View> */}
-    </TouchableOpacity>
-  );
+      </TouchableOpacity>
+    </Animatable.View>
+  )
 
   return (
-    <View style={styles.container}>
-      {/* Header */}
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Our Winners</Text>
-        <Text style={styles.headerSubtitle}>Celebrating exceptional achievements</Text>
-      </View>
-      
-      {/* Category Filters */}
-      {/* <ScrollView 
-        horizontal 
-        showsHorizontalScrollIndicator={false} 
-        contentContainerStyle={styles.categoryContainer}
-      >
-        {renderCategoryButton('all', 'All Winners', 'trophy')}
-        {renderCategoryButton('grand', 'Grand Prize', 'crown')}
-        {renderCategoryButton('first', 'First Prize', 'medal')}
-        {renderCategoryButton('second', 'Second Prize', 'award')}
-        {renderCategoryButton('third', 'Third Prize', 'star')}
-        {renderCategoryButton('other', 'Special Prizes', 'gem')}
-      </ScrollView> */}
-      
-      {/* Winners List */}
-      <ScrollView style={styles.winnersContainer}>
-        {filteredWinners.map(renderWinnerCard)}
-      </ScrollView>
-      
-      {/* Winner Details Modal */}
-      {selectedWinner && (
-        <View style={styles.modalBackdrop}>
-          <Animated.View style={[
-            styles.modalContainer,
-            { transform: [{ scale: scaleValue }] }
-          ]}>
-            <TouchableOpacity style={styles.closeButton} onPress={closeWinnerDetails}>
-              <Icon name="close" size={24} color="#fff" />
-            </TouchableOpacity>
-            
-            <View style={styles.modalHeader}>
-              <View style={styles.modalAvatarPlaceholder}>
-                <Text style={styles.modalAvatarText}>{selectedWinner.name.charAt(0)}</Text>
-              </View>
-              <Text style={styles.modalWinnerName}>{selectedWinner.name}</Text>
-              <Text style={styles.modalWinnerLocation}>
-                <Icon name="location-on" size={16} color="#fff" /> 
-                {selectedWinner.location || 'Remote'}
-              </Text>
-            </View>
-            
-            <View style={styles.modalContent}>
-              <View style={styles.detailRow}>
-                <Icon name="emoji-events" size={24} color="#FFD700" />
-                <View style={styles.detailInfo}>
-                  <Text style={styles.detailLabel}>Prize</Text>
-                  <Text style={styles.detailValue}>{selectedWinner.prize}</Text>
-                </View>
-              </View>
-              
-              <View style={styles.detailRow}>
-                <Icon name="attach-money" size={24} color="#4CAF50" />
-                <View style={styles.detailInfo}>
-                  <Text style={styles.detailLabel}>Amount</Text>
-                  <Text style={styles.detailValue}>{selectedWinner.amount}</Text>
-                </View>
-              </View>
-              
-              <View style={styles.detailRow}>
-                <Icon name="event" size={24} color="#171449" />
-                <View style={styles.detailInfo}>
-                  <Text style={styles.detailLabel}>Date Won</Text>
-                  <Text style={styles.detailValue}>{selectedWinner.date}</Text>
-                </View>
-              </View>
-              
-              <View style={styles.detailRow}>
-                <Icon name="category" size={24} color="#FF6B6B" />
-                <View style={styles.detailInfo}>
-                  <Text style={styles.detailLabel}>Category</Text>
-                  <Text style={styles.detailValue}>
-                    {selectedWinner.category === 'grand' && 'Grand Prize'}
-                    {selectedWinner.category === 'first' && 'First Prize'}
-                    {selectedWinner.category === 'second' && 'Second Prize'}
-                    {selectedWinner.category === 'third' && 'Third Prize'}
-                    {selectedWinner.category === 'other' && 'Special Recognition'}
+    <>
+      {/* <Navbar /> */}
+      <View style={styles.container}>
+        {/* Header */}
+
+        <Animatable.View
+          animation='fadeInDown'
+          duration={1000}
+          style={styles.header}>
+          <Text style={styles.headerTitle}>Our Winners</Text>
+          <Text style={styles.headerSubtitle}>
+            Celebrating exceptional achievements
+          </Text>
+        </Animatable.View>
+
+        {/* Category Filters */}
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.categoryContainer}>
+          {renderCategoryButton('all', 'All Winners', 'trophy')}
+          {renderCategoryButton('grand', 'Grand Prize', 'crown')}
+          {renderCategoryButton('first', 'First Prize', 'medal')}
+          {renderCategoryButton('second', 'Second Prize', 'award')}
+          {renderCategoryButton('third', 'Third Prize', 'star')}
+          {renderCategoryButton('other', 'Special Prizes', 'gem')}
+        </ScrollView>
+
+        {/* Winners List */}
+        <ScrollView style={styles.winnersContainer}>
+          {filteredWinners?.map(renderWinnerCard)}
+        </ScrollView>
+
+        {/* Winner Details Modal */}
+        {console.log(selectedWinner)}
+        {selectedWinner && (
+          <View style={styles.modalBackdrop}>
+            <Animated.View
+              style={[
+                styles.modalContainer,
+                {transform: [{scale: scaleValue}]},
+              ]}>
+              <TouchableOpacity
+                style={styles.closeButton}
+                // onPress={closeWinnerDetails}
+              >
+                <Icon name='close' size={24} color='#fff' />
+              </TouchableOpacity>
+
+              <View style={styles.modalHeader}>
+                {/* <Text style={{color:'white'}}>hello</Text> */}
+                <View style={styles.modalAvatarPlaceholder}>
+                  <Text style={styles.modalAvatarText}>
+                    {selectedWinner.name.charAt(0)}
                   </Text>
                 </View>
+                <Text style={styles.modalWinnerName}>
+                  {selectedWinner.name}
+                </Text>
+                <Text style={styles.modalWinnerLocation}>
+                  <Icon name='location-on' size={16} color='#fff' />
+                  {selectedWinner.location || 'Remote'}
+                </Text>
               </View>
-            </View>
-            
-            <View style={styles.modalFooter}>
-              <Text style={styles.congratsText}>Congratulations!</Text>
-            </View>
-          </Animated.View>
-        </View>
-      )}
-      
-      {/* Decorative Elements */}
-      <View style={styles.decorCircle1} />
-      <View style={styles.decorCircle2} />
-      <View style={styles.decorCircle3} />
-    </View>
-  );
-};
+
+              <View style={styles.modalContent}>
+                <View style={styles.detailRow}>
+                  <Icon name='emoji-events' size={24} color='#FFD700' />
+                  <View style={styles.detailInfo}>
+                    <Text style={styles.detailLabel}>Prize</Text>
+                    <Text style={styles.detailValue}>
+                      {selectedWinner.prize}
+                    </Text>
+                  </View>
+                </View>
+
+                <View style={styles.detailRow}>
+                  <Icon name='attach-money' size={24} color='#4CAF50' />
+                  <View style={styles.detailInfo}>
+                    <Text style={styles.detailLabel}>Amount</Text>
+                    <Text style={styles.detailValue}>
+                      {selectedWinner.amount}
+                    </Text>
+                  </View>
+                </View>
+
+                <View style={styles.detailRow}>
+                  <Icon name='event' size={24} color='#171449' />
+                  <View style={styles.detailInfo}>
+                    <Text style={styles.detailLabel}>Date Won</Text>
+                    <Text style={styles.detailValue}>
+                      {selectedWinner.date}
+                    </Text>
+                  </View>
+                </View>
+
+                <View style={styles.detailRow}>
+                  <Icon name='category' size={24} color='#FF6B6B' />
+                  <View style={styles.detailInfo}>
+                    <Text style={styles.detailLabel}>Category</Text>
+                    <Text style={styles.detailValue}>
+                      {selectedWinner.category === 'grand' && 'Grand Prize'}
+                      {selectedWinner.category === 'first' && 'First Prize'}
+                      {selectedWinner.category === 'second' && 'Second Prize'}
+                      {selectedWinner.category === 'third' && 'Third Prize'}
+                      {selectedWinner.category === 'other' &&
+                        'Special Recognition'}
+                    </Text>
+                  </View>
+                </View>
+              </View>
+
+              <View style={styles.modalFooter}>
+                <Text style={styles.congratsText}>Congratulations!</Text>
+              </View>
+            </Animated.View>
+          </View>
+        )}
+
+        {/* Decorative Elements */}
+        <View style={styles.decorCircle1} />
+        <View style={styles.decorCircle2} />
+        <View style={styles.decorCircle3} />
+      </View>
+    </>
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -323,7 +329,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#E0E0E0',
     shadowColor: '#171449',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
@@ -342,7 +348,8 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   winnersContainer: {
-    flex: 1,
+    // flex: 1,
+    height: 550,
     padding: 15,
   },
   winnerCard: {
@@ -351,7 +358,7 @@ const styles = StyleSheet.create({
     padding: 20,
     marginBottom: 15,
     shadowColor: '#171449',
-    shadowOffset: { width: 0, height: 5 },
+    shadowOffset: {width: 0, height: 5},
     shadowOpacity: 0.1,
     shadowRadius: 10,
     elevation: 5,
@@ -546,6 +553,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(77, 171, 247, 0.1)',
     zIndex: -1,
   },
-});
+})
 
-export default WinnerPage;
+export default WinnerPage

@@ -19,6 +19,9 @@ import Wallet from './src/screens/Wallet'
 import ChooseAmount from './src/screens/ChooseAmount'
 import PaymentMethod from './src/screens/PaymentMethod'
 import RegistrationPage from './src/screens/RegistrationPage'
+import EventDetailScreen from './src/screens/EventDetailScreen '
+import ProfilePage from './src/screens/ProfilePage'
+import NotificationPage from './src/screens/NotificationPage'
 
 const Stack = createNativeStackNavigator()
 
@@ -26,11 +29,11 @@ export default function App () {
   return (
     <Provider store={store}>
       <SafeAreaProvider>
-        <StatusBar barStyle='dark-content' />
+        <StatusBar barStyle='default' />
 
         <NavigationContainer>
           {/* <AppTabs /> */}
-          <Stack.Navigator initialRouteName='DrawerNavigation'>
+          <Stack.Navigator initialRouteName='Welcome'>
             <Stack.Screen
               name='Welcome'
               component={WelcomePage}
@@ -101,6 +104,21 @@ export default function App () {
                   fontWeight: 'bold',
                 },
               }}
+            />
+            <Stack.Screen
+              name='EventDetailScreen'
+              component={EventDetailScreen}
+              options={{title: 'Event Details'}} // optional
+            />
+            <Stack.Screen
+              name='Profile'
+              component={ProfilePage}
+              options={{title: 'Profile '}} // optional
+            />
+            <Stack.Screen
+              name='Notification'
+              component={NotificationPage}
+              options={{title: 'Notification '}} // optional
             />
           </Stack.Navigator>
         </NavigationContainer>

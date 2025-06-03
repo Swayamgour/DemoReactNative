@@ -1,5 +1,7 @@
 import React from 'react'
-import {View, Text, StyleSheet} from 'react-native'
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
+import * as Animatable from 'react-native-animatable'
+import {useNavigation} from '@react-navigation/native'
 
 const EarningCard = ({
   title,
@@ -8,7 +10,10 @@ const EarningCard = ({
   availableSeats,
   totalSeats = 20,
   prizes,
+  index = 0, // new prop for staggered animation
 }) => {
+  const navigation = useNavigation()
+
   const getLevelColor = level => {
     switch (level?.toLowerCase()) {
       case 'expert':
@@ -25,45 +30,62 @@ const EarningCard = ({
   const getLevelBackground = level => {
     switch (level?.toLowerCase()) {
       case 'expert':
-        return {backgroundColor: 'red' }
+        return {backgroundColor: 'red'}
       case 'intermediate':
         return {backgroundColor: '#171449'}
       case 'entry':
         return {backgroundColor: '#4d8723'}
       default:
-        return {backgroundColor: '#ccc'} // fallback color
+        return {backgroundColor: '#ccc'}
     }
   }
 
+  const handlePress = () => {
+    navigation.navigate('EventDetailScreen', {
+      title,
+      level,
+      entryAmount,
+      availableSeats,
+      totalSeats,
+      prizes,
+    })
+  }
+
   return (
-    <View style={styles.card}>
-      <View style={styles.header}>
-        <Text style={[styles.level, getLevelColor(level)]}>Level: {level}</Text>
-        <Text style={styles.title}>{title}</Text>
-      </View>
-
-      <View style={styles.questionInfo}>
-        {/* <Text style={styles.ClickHere}>Click Here to Start Your Text</Text> */}
-        {/* <View style={styles.clickHereWrapper}>
-          <Text style={styles.clickHereText}>
-            Click Here to Start Your Text
+    <TouchableOpacity onPress={handlePress} activeOpacity={0.85}>
+      <Animatable.View
+        animation='fadeInUp'
+        duration={600}
+        delay={index * 150}
+        useNativeDriver
+        // onPress={handlePress}
+        style={styles.card}>
+        <View style={styles.header}>
+          <Text style={[styles.level, getLevelColor(level)]}>
+            Level: {level}
           </Text>
-        </View> */}
-        <View style={[styles.clickHereQuestion, getLevelBackground(level)]}>
-          <Text style={styles.infoText}>20 objective Questions 20 minutes</Text>
+          <Text style={styles.title}>{title}</Text>
         </View>
-      </View>
 
-      <View style={styles.entryInfo}>
-        <Text style={styles.boldText}>Prize : {entryAmount}</Text>
-        <View style={styles.seatInfo}>
-          <Text style={styles.boldText}>Available Seats :</Text>
-          <Text style={styles.availableSeats}>{availableSeats}</Text>
-          <Text style={styles.outOf}> out of </Text>
-          <Text style={styles.boldText}>{totalSeats}</Text>
+        <View style={styles.questionInfo}>
+          <View style={[styles.clickHereQuestion, getLevelBackground(level)]}>
+            <Text style={styles.infoText}>
+              20 objective Questions 20 minutes
+            </Text>
+          </View>
         </View>
-      </View>
-    </View>
+
+        <View style={styles.entryInfo}>
+          <Text style={styles.boldText}>Prize : {entryAmount}</Text>
+          <View style={styles.seatInfo}>
+            <Text style={styles.boldText}>Available Seats :</Text>
+            <Text style={styles.availableSeats}>{availableSeats}</Text>
+            <Text style={styles.outOf}> out of </Text>
+            <Text style={styles.boldText}>{totalSeats}</Text>
+          </View>
+        </View>
+      </Animatable.View>
+    </TouchableOpacity>
   )
 }
 

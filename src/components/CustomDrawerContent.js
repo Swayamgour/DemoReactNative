@@ -20,30 +20,33 @@ export default function CustomDrawerContent ({navigation}) {
       <View style={styles.drawerBox}>
         {/* //
         You can also use Ionicons, FontAwesome, etc. */}
-        <View style={styles.profileSection}>
-          <View style={styles.avatarWrapper}>
-            <Image
-              source={require('../../src/assets/profile.webp')}
-              style={styles.avatar}
-              resizeMode='cover'
-            />
-            <MaterialCommunityIcons
-              name='camera'
-              size={18}
-              color='#fff'
-              style={styles.cameraIcon}
-            />
+        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+          <View style={styles.profileSection}>
+            <View style={styles.avatarWrapper}>
+              <Image
+                source={require('../../src/assets/profile.webp')}
+                style={styles.avatar}
+                resizeMode='cover'
+              />
+              <MaterialCommunityIcons
+                name='camera'
+                size={18}
+                color='#fff'
+                style={styles.cameraIcon}
+              />
+            </View>
+            <View>
+              <Text style={styles.name}>Riveyra</Text>
+              <Text style={styles.level}>Level 10</Text>
+            </View>
           </View>
-          <View>
-            <Text style={styles.name}>Riveyra</Text>
-            <Text style={styles.level}>Level 10</Text>
-          </View>
-        </View>
+        </TouchableOpacity>
+
         <View style={styles.profileSectionSecondary}>
           <Image
             source={require('../../src/assets/Swiper.png')}
             style={styles.banner}
-            resizeMode='cover'
+            resizeMode='contain'
           />
 
           <TouchableOpacity
@@ -144,13 +147,9 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
 
-  //   level: {
-  //     fontSize: 14,
-  //     color: '#ccc',
-  //   },
-
   profileSectionSecondary: {
-    padding: 15,
+    // padding:
+    marginHorizontal: 10,
   },
   level: {fontSize: 12, color: '#fff'},
   banner: {width: '100%', height: 100, borderRadius: 8, marginVertical: 10},

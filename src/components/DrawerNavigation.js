@@ -1,7 +1,7 @@
 import React from 'react'
 import {createDrawerNavigator} from '@react-navigation/drawer'
 import Dashboard from '../screens/Dashboard'
-import Profile from '../screens/Profile'
+import Profile from '../screens/ProfilePage'
 import CustomDrawerContent from './CustomDrawerContent'
 import AppTabs from '../screens/AppTabs'
 // import { View } from 'react-native-reanimated/lib/typescript/Animated'

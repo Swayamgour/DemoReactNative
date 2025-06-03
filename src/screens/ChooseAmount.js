@@ -11,6 +11,7 @@ import {
 } from 'react-native'
 import Modal from 'react-native-modal'
 import {useNavigation} from '@react-navigation/native' // ✅ Import the hook
+import * as Animatable from 'react-native-animatable'
 
 const {width} = Dimensions.get('window')
 
@@ -57,7 +58,10 @@ const ChooseAmount = () => {
         <ScrollView contentContainerStyle={styles.scrollContainer}>
           {/* <Text style={styles.title}>Choose Amount</Text> */}
 
-          <View style={styles.amountGrid}>
+          <Animatable.View
+            duration={1000}
+            animation='fadeInUp'
+            style={styles.amountGrid}>
             {amountOptions.map(option => (
               <TouchableOpacity
                 key={option.amount}
@@ -73,48 +77,51 @@ const ChooseAmount = () => {
                 </Text>
               </TouchableOpacity>
             ))}
-          </View>
+          </Animatable.View>
 
           {/* <View style={styles.divider} /> */}
-
-          <Text style={styles.sectionLabel}>Enter Amount</Text>
-          <View style={styles.inputContainer}>
-            <Text style={styles.currencySymbol}>₹ </Text>
-            <TextInput
-              style={styles.amountInput}
-              value={customAmount}
-              onChangeText={handleCustomAmountChange}
-              keyboardType='numeric'
-              placeholder='0'
-            />
-          </View>
-
-          <View style={styles.bonusContainer}>
-            {/* <Text style={styles.bonusLabel}></Text> */}
-            <Text style={styles.bonusValue}> You get {bonus} Bonus Cash</Text>
-            <Text onPress={() => setIsVisible(true)} style={styles.disclaimer}>
-              Includes Deposit & GST
-            </Text>
-          </View>
-
-          {/* <View style={styles.divider} /> */}
-
-          <View style={styles.divider} />
-
-          <Text style={styles.sectionTitle}>Offer</Text>
-
-          <View style={styles.offerCard}>
-            <View style={styles.offerRow}>
-              {/* <Text style={styles.offerLabel}></Text> */}
-              <Text style={styles.offerValue}>You get 50 Bonus Cash</Text>
+          <Animatable.View duration={800} delay={500} animation='fadeInUp'>
+            <Text style={styles.sectionLabel}>Enter Amount</Text>
+            <View style={styles.inputContainer}>
+              <Text style={styles.currencySymbol}>₹ </Text>
+              <TextInput
+                style={styles.amountInput}
+                value={customAmount}
+                onChangeText={handleCustomAmountChange}
+                keyboardType='numeric'
+                placeholder='0'
+              />
             </View>
-            <View style={styles.offerRow}>
-              <Text style={styles.offerLabel}>Bonus</Text>
-              <TouchableOpacity>
-                <Text style={styles.removeLink}>Remove</Text>
-              </TouchableOpacity>
+
+            <View style={styles.bonusContainer}>
+              {/* <Text style={styles.bonusLabel}></Text> */}
+              <Text style={styles.bonusValue}> You get {bonus} Bonus Cash</Text>
+              <Text
+                onPress={() => setIsVisible(true)}
+                style={styles.disclaimer}>
+                Includes Deposit & GST
+              </Text>
             </View>
-          </View>
+
+            {/* <View style={styles.divider} /> */}
+
+            <View style={styles.divider} />
+
+            <Text style={styles.sectionTitle}>Offer</Text>
+
+            <View style={styles.offerCard}>
+              <View style={styles.offerRow}>
+                {/* <Text style={styles.offerLabel}></Text> */}
+                <Text style={styles.offerValue}>You get 50 Bonus Cash</Text>
+              </View>
+              <View style={styles.offerRow}>
+                <Text style={styles.offerLabel}>Bonus</Text>
+                <TouchableOpacity>
+                  <Text style={styles.removeLink}>Remove</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </Animatable.View>
 
           {/* <TouchableOpacity style={styles.moreOffersButton}>
           <Text style={styles.moreOffersText}>More Offers</Text>

@@ -2,7 +2,7 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Dashboard from './screens/Dashboard';
-import Profile from './screens/Profile'; // Create this file
+import Profile from './screens/ProfilePage'; // Create this file
 
 const Drawer = createDrawerNavigator();
 

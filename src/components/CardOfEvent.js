@@ -53,12 +53,14 @@ const CardOfEvent = () => {
   ]
 
   return (
-   
-
-    <ScrollView contentContainerStyle={{paddingHorizontal: 16, paddingVertical: 0}} style={{backgroundColor: '#F5F5F5'}}>
+    <ScrollView
+      contentContainerStyle={{paddingHorizontal: 16, paddingVertical: 0}}
+      style={{backgroundColor: '#F5F5F5'}}
+      >
       {cardsData.map((card, index) => (
         <EarningCard
           key={index}
+          index={index}
           title={card.title}
           level={card.level}
           entryAmount={card.entryAmount}

@@ -19,30 +19,38 @@ function Navbar () {
     {
       name: 'Home',
       icon: <Ionicons name='home-outline' size={22} color='#fff' />,
+      Navigate: 'DrawerNavigation',
     },
     {
       name: 'Courses',
       icon: <Ionicons name='book-outline' size={22} color='#fff' />,
+      Navigate: 'Profile',
     },
     {
       name: 'Profile',
       icon: <Ionicons name='person-outline' size={22} color='#fff' />,
+      Navigate: 'Profile',
     },
     {
       name: 'Chat',
       icon: <Ionicons name='chatbubble-outline' size={22} color='#fff' />,
+      Navigate: 'Profile',
     },
     {
       name: 'Stats',
       icon: <Ionicons name='bar-chart-outline' size={22} color='#fff' />,
+      Navigate: 'Profile',
     },
     {
       name: 'Help',
       icon: <Ionicons name='help-circle-outline' size={22} color='#fff' />,
+      Navigate: 'Profile',
     },
+
     {
       name: 'More',
       icon: <Ionicons name='ellipsis-horizontal' size={22} color='#fff' />,
+      Navigate: 'Profile',
     },
   ]
 
@@ -63,13 +71,21 @@ function Navbar () {
         </View>
 
         <View style={styles.navRightSection}>
-          <View>
+          {/* <View>
             <Notification
               name='notifications-active'
               size={25}
               style={styles.icons}
             />
-          </View>
+          </View> */}
+
+          <TouchableOpacity onPress={() => navigation.navigate('Notification')}>
+            <Notification
+              name='notifications-active'
+              size={25}
+              style={styles.icons}
+            />
+          </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navigation.navigate('Wallet')}>
             <Wallet name='wallet-outline' size={25} style={styles.icons} />
@@ -80,10 +96,13 @@ function Navbar () {
       <View style={styles.iconContainer}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {array?.map((item, index) => (
-            <View key={index} style={styles.iconItem}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate(item.Navigate)}
+              key={index}
+              style={styles.iconItem}>
               {item.icon}
               <Text style={styles.iconLabel}>{item.name}</Text>
-            </View>
+            </TouchableOpacity>
           ))}
         </ScrollView>
       </View>
@@ -125,7 +144,7 @@ const styles = StyleSheet.create({
   navRightSection: {
     flexDirection: 'row',
     gap: '25',
-    alignItems:'center'
+    alignItems: 'center',
   },
 
   iconContainer: {

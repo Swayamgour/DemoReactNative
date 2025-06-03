@@ -15,8 +15,8 @@ import {
 const { width } = Dimensions.get('window');
 
 const PaymentMethod = () => {
-  const [selectedMethod, setSelectedMethod] = useState('any-upi');
-  const [showUpiOptions, setShowUpiOptions] = useState(false);
+  const [selectedMethod, setSelectedMethod] = useState('upi');
+  const [showUpiOptions, setShowUpiOptions] = useState(true);
   const [showCardForm, setShowCardForm] = useState(false);
   const [cardDetails, setCardDetails] = useState({
     number: '',
@@ -26,10 +26,10 @@ const PaymentMethod = () => {
   });
 
   const paymentMethods = [
-    { id: 'phonepe', name: 'PhonePe', icon: 'phonepe-icon' },
+    // { id: 'phonepe', name: 'PhonePe', icon: 'phonepe-icon' },
     { id: 'upi', name: 'UPI', icon: 'upi-icon' },
-    { id: 'any-upi', name: 'Pay by any UPI app', icon: 'any-upi-icon' },
-    { id: 'google-pay', name: 'Google Pay', icon: 'google-pay-icon' },
+    // { id: 'any-upi', name: 'Pay by any UPI app', icon: 'any-upi-icon' },
+    // { id: 'google-pay', name: 'Google Pay', icon: 'google-pay-icon' },
     { id: 'other', name: 'Other Payments', icon: 'other-icon' },
     { id: 'credit-card', name: 'Credit Card', icon: 'credit-card-icon' },
     { id: 'debit-card', name: 'Debit Card', icon: 'debit-card-icon' },

@@ -1,12 +1,16 @@
 import React from 'react'
 import {View, Image, StyleSheet, Dimensions} from 'react-native'
 import Swiper from 'react-native-swiper'
+import * as Animatable from 'react-native-animatable'
 
 const {width} = Dimensions.get('window')
 
 const SwiperImage = () => {
   return (
-    <View style={styles.container}>
+    <Animatable.View
+      animation='fadeInDown'
+      duration={1000}
+      style={styles.container}>
       <Swiper
         autoplay
         showsPagination
@@ -15,37 +19,43 @@ const SwiperImage = () => {
         scrollEnabled={true}
         loop={true}
         autoplayTimeout={3}>
-        <Image
-          source={require('../assets/Swiper.png')}
-          style={styles.image}
-          resizeMode='cover'
-        />
-        <Image
-          source={require('../assets/Swiper.png')}
-          style={styles.image}
-          resizeMode='cover'
-        />
-        <Image
-          source={require('../assets/Swiper.png')}
-          style={styles.image}
-          resizeMode='cover'
-        />
+        {[1, 2, 3].map((_, index) => (
+          <Animatable.View
+            key={index}
+            animation='zoomIn'
+            duration={800}
+            useNativeDriver
+            style={styles.slide}>
+            <Image
+              source={require('../assets/image/swiperImage.jpeg')}
+              style={styles.image}
+              resizeMode='contain'
+            />
+          </Animatable.View>
+        ))}
       </Swiper>
-    </View>
+    </Animatable.View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    height: 170,
-    // height: '100%',
-    width: '100%',
+    height: 100,
+    width: '95%',
+    marginHorizontal: 10,
+    marginVertical: 10,
+    // borderRadius: 10,
+    overflow: 'hidden',
+  },
+  slide: {
+    flex: 1,
+    borderRadius: 10,
+    overflow: 'hidden',
   },
   image: {
-    width: '95%',
-    marginHorizontal: '2%',
-    marginVertical: 10,
-    borderRadius: 10,
+    width: '100%',
+    height: '100%',
+    // borderRadius: 10,
   },
 })
 

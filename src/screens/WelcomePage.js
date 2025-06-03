@@ -8,12 +8,13 @@ import {
   ImageBackground,
   TouchableOpacity,
   StatusBar,
+  ActivityIndicator,
 } from 'react-native'
 import Text from '../components/CustomText' // Custom Text component for consistent styling
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const WelcomePage = ({navigation}) => {
-  const [storeToken, setStoreToken] = useState('')
+  const [loading, setLoading] = useState(false)
 
   // const token = AsyncStorage.getItem('authToken')
   // console.log('Token:', token)
@@ -30,28 +31,28 @@ const WelcomePage = ({navigation}) => {
   // }
 
   const handleNext = async () => {
-    navigation.navigate('Login')
-    // setLoading(true)k
+    // navigation.navigate('Login')
+    setLoading(true)
 
-    // try {
-    //   const token = await AsyncStorage.getItem('authToken')
-    //   setTimeout(() => {
-    //     if (token) {
-    //       console.log('home')
-    //       // navigation.navigate('Home') // token exists → go to Home
-    //       navigation.reset({
-    //         index: 0,
-    //         routes: [{name: 'DrawerNavigation'}],
-    //       })
-    //     } else {
-    //       console.log('login')
+    try {
+      const token = await AsyncStorage.getItem('authToken')
+      // setTimeout(() => {
+      if (token) {
+        console.log('home')
+        // navigation.navigate('Home') // token exists → go to Home
+        navigation.reset({
+          index: 0,
+          routes: [{name: 'DrawerNavigation'}],
+        })
+      } else {
+        console.log('login')
 
-    //       navigation.navigate('Login') // no token → go to Login
-    //     }
-    //   }, 2000) // optional splash delay
-    // } catch (err) {
-    //   console.error(err)
-    // }
+        navigation.navigate('Login') // no token → go to Login
+      }
+      // }, 500) // optional splash delay
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   return (
@@ -59,7 +60,7 @@ const WelcomePage = ({navigation}) => {
       source={require('../assets/background.png')} // 🔁 Replace with your background image path
       style={styles.background}
       resizeMode='cover'>
-      <StatusBar  barStyle='light-content' />
+      <StatusBar barStyle='light-content' />
       <View style={styles.overlay}>
         {/* Logo */}
         <Image
@@ -85,14 +86,32 @@ const WelcomePage = ({navigation}) => {
         />
 
         {/* Next Button */}
+        {/* {loading ? (
+          <View style={{}}>
+            <Text style={{color: '#fff'}}>Loading...</Text>
+            <ActivityIndicator size='large' color='#fff' />
+          </View>
+        ) : ( */}
         <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={styles.NextBtn}
-            title='Next'
-            onPress={handleNext}>
-            <Text style={styles.NextBtnFont}>Next</Text>
-          </TouchableOpacity>
+          {loading ? (
+            <TouchableOpacity
+              style={styles.NextBtn}
+              title='Next'
+              // onPress={handleNext}
+              >
+              <Text style={styles.NextBtnFont}>Loading...</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              style={styles.NextBtn}
+              title='Next'
+              onPress={handleNext}>
+              <Text style={styles.NextBtnFont}>Next</Text>
+            </TouchableOpacity>
+          )}
         </View>
+        {/* )} */}
+        {/* )} */}
       </View>
     </ImageBackground>
   )
