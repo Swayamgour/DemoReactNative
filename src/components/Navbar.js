@@ -57,7 +57,7 @@ function Navbar () {
   const navigation = useNavigation()
 
   return (
-    <View style={{backgroundColor: '#171449'}}>
+    <View>
       <SafeAreaView style={styles.navbar}>
         <View style={styles.navRightSection}>
           <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
@@ -93,7 +93,7 @@ function Navbar () {
         </View>
       </SafeAreaView>
 
-      <View style={styles.iconContainer}>
+      {/* <View style={styles.iconContainer}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {array?.map((item, index) => (
             <TouchableOpacity
@@ -105,7 +105,7 @@ function Navbar () {
             </TouchableOpacity>
           ))}
         </ScrollView>
-      </View>
+      </View> */}
     </View>
   )
 }

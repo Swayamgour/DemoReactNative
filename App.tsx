@@ -23,6 +23,8 @@ import EventDetailScreen from './src/screens/EventDetailScreen '
 import ProfilePage from './src/screens/ProfilePage'
 import NotificationPage from './src/screens/NotificationPage'
 import SplashScreen from './src/components/SplashScreen'
+import Tab from './src/components/Tab'
+import AddCash from './src/components/AddCash'
 
 const Stack = createNativeStackNavigator()
 
@@ -34,7 +36,12 @@ export default function App () {
 
         <NavigationContainer>
           {/* <AppTabs /> */}
-          <Stack.Navigator initialRouteName='Splash'>
+          <Stack.Navigator initialRouteName='Wallet'>
+            <Stack.Screen
+              name='Tab'
+              component={Tab}
+              options={{headerShown: false}}
+            />
             <Stack.Screen
               name='Splash'
               component={SplashScreen}
@@ -124,6 +131,11 @@ export default function App () {
             <Stack.Screen
               name='Notification'
               component={NotificationPage}
+              options={{title: 'Notification '}} // optional
+            />
+            <Stack.Screen
+              name='AddCash'
+              component={AddCash}
               options={{title: 'Notification '}} // optional
             />
           </Stack.Navigator>

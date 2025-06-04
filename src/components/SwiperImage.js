@@ -3,7 +3,7 @@ import {View, Image, StyleSheet, Dimensions} from 'react-native'
 import Swiper from 'react-native-swiper'
 import * as Animatable from 'react-native-animatable'
 
-const {width} = Dimensions.get('window')
+// const {width} = Dimensions.get('window')
 
 const SwiperImage = () => {
   return (
@@ -25,11 +25,12 @@ const SwiperImage = () => {
             animation='zoomIn'
             duration={800}
             useNativeDriver
+
             style={styles.slide}>
             <Image
               source={require('../assets/image/swiperImage.jpeg')}
               style={styles.image}
-              resizeMode='contain'
+              resizeMode='cover'
             />
           </Animatable.View>
         ))}
@@ -41,11 +42,9 @@ const SwiperImage = () => {
 const styles = StyleSheet.create({
   container: {
     height: 100,
-    width: '95%',
-    marginHorizontal: 10,
     marginVertical: 10,
-    // borderRadius: 10,
     overflow: 'hidden',
+    paddingHorizontal:15 
   },
   slide: {
     flex: 1,
@@ -55,7 +54,7 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: '100%',
-    // borderRadius: 10,
+    borderRadius: 10,
   },
 })
 

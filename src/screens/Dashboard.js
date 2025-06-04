@@ -9,9 +9,11 @@ import CardOfEvent from '../components/CardOfEvent'
 import Footer from '../components/Footer'
 import AppTabs from './AppTabs'
 import * as Animatable from 'react-native-animatable'
+import FilterTab from '../components/FilterTab'
 
 function Dashboard () {
   const backPressedOnce = useRef(false)
+  
 
   // useFocusEffect(
   //   React.useCallback(() => {
@@ -47,6 +49,8 @@ function Dashboard () {
         duration={800}
         delay={500}
         style={{flex: 1, backgroundColor: '#fff'}}>
+        <FilterTab />
+
         <CardOfEvent />
       </Animatable.View>
       {/* <CardOfEvent /> */}

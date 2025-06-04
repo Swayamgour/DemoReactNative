@@ -1,278 +1,419 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {
-  StyleSheet,
-  Text,
   View,
+  Text,
+  ScrollView,
   TouchableOpacity,
-  SafeAreaView,
+  StyleSheet,
+  TextInput,
+  LayoutAnimation,
+  UIManager,
+  Platform,
   Dimensions,
-  Image,
 } from 'react-native'
-import {useNavigation} from '@react-navigation/native' // ✅ Import the hook
-import * as Animatable from 'react-native-animatable'
+import Icon from 'react-native-vector-icons/MaterialIcons'
+import OfferDetailsModal from '../components/OfferDetailsModal'
+import CuponCard from '../components/CuponCard'
+import {useNavigation} from '@react-navigation/native'
 
-const {width} = Dimensions.get('window')
-
-function Wallet () {
-  const navigate = useNavigation()
-  return (
-    <SafeAreaView style={styles.container}>
-      {/* Top Content Area */}
-      <Animatable.View
-        duration={1000}
-        animation='fadeInUp'
-        style={styles.topContainer}>
-        {/* Balance Card */}
-        <View style={styles.card}>
-          {/* Decorative Elements */}
-          <View style={styles.circle1} />
-          <View style={styles.circle2} />
-
-          <Text style={styles.balanceLabel}>Current Balance</Text>
-          <Text style={styles.balanceAmount}>₹ 50.00</Text>
-
-          {/* Card Details */}
-          <View style={styles.cardDetails}>
-            <View style={styles.cardInfo}>
-              <Text style={styles.cardLabel}>Card Holder</Text>
-              <Text style={styles.cardValue}>John Doe</Text>
-            </View>
-            <View style={styles.cardInfo}>
-              <Text style={styles.cardLabel}>Valid Thru</Text>
-              <Text style={styles.cardValue}>12/25</Text>
-            </View>
-            <Image
-              source={require('../../src/assets/image/atmChip.png')}
-              style={styles.chipIcon}
-            />
-          </View>
-        </View>
-
-        {/* Recent Transactions */}
-        <View style={styles.transactionsContainer}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Recent Transactions</Text>
-            <TouchableOpacity>
-              <Text style={styles.viewAll}>View All</Text>
-            </TouchableOpacity>
-          </View>
-
-          {/* <View style={styles.transactionItem}>
-            <View style={[styles.transactionIcon, {backgroundColor: '#f0f5ff'}]}>
-              <Text style={styles.iconText}>🛒</Text>
-            </View>
-            <View style={styles.transactionDetails}>
-              <Text style={styles.transactionName}>Grocery Store</Text>
-              <Text style={styles.transactionDate}>Today, 10:30 AM</Text>
-            </View>
-            <Text style={styles.transactionAmount}>-₹ 120.00</Text>
-          </View> */}
-
-          <View style={styles.transactionItem}>
-            <View
-              style={[styles.transactionIcon, {backgroundColor: '#f0f8f0'}]}>
-              <Text style={styles.iconText}>💵</Text>
-            </View>
-            <View style={styles.transactionDetails}>
-              <Text style={styles.transactionName}>Cash Deposit</Text>
-              <Text style={styles.transactionDate}>Yesterday, 04:15 PM</Text>
-            </View>
-            <Text style={[styles.transactionAmount, styles.positiveAmount]}>
-              +₹ 500.00
-            </Text>
-          </View>
-
-          {/* <View style={styles.transactionItem}>
-            <View style={[styles.transactionIcon, {backgroundColor: '#fff8f0'}]}>
-              <Text style={styles.iconText}>🍔</Text>
-            </View>
-            <View style={styles.transactionDetails}>
-              <Text style={styles.transactionName}>Food Order</Text>
-              <Text style={styles.transactionDate}>Yesterday, 01:20 PM</Text>
-            </View>
-            <Text style={styles.transactionAmount}>-₹ 320.00</Text>
-          </View> */}
-        </View>
-      </Animatable.View>
-
-      {/* Bottom Button */}
-      <Animatable.View
-        duration={1000}
-        animation='fadeInRight'
-        style={styles.buttonContainer}>
-        <TouchableOpacity
-          onPress={() => navigate.navigate('ChooseAmount')}
-          style={[styles.actionButton, styles.addButton]}>
-          <Text style={styles.buttonText}>Add Money</Text>
-        </TouchableOpacity>
-      </Animatable.View>
-    </SafeAreaView>
-  )
+// Enable LayoutAnimation on Android
+if (
+  Platform.OS === 'android' &&
+  UIManager.setLayoutAnimationEnabledExperimental
+) {
+  UIManager.setLayoutAnimationEnabledExperimental(true)
 }
 
-export default Wallet
+const Wallet = () => {
+  const navigate = useNavigation()
+  const [amount, setAmount] = useState('20')
+  const [selectedOffer, setSelectedOffer] = useState(1)
+  const [showDetails, setShowDetails] = useState(false)
+  const [showDetailOFCurrent, setShowDetailOFCurrent] = useState(false)
+  const [modalVisible, setModalVisible] = useState(false)
+
+  const depositAmount = parseFloat(amount) || 0
+  const tax = depositAmount * 0.28
+  const total = depositAmount + tax
+
+  const paymentOffers = [
+    {id: 1, title: 'CRED UP!', description: 'Flat ₹ 10 Cashback'},
+    {id: 2, title: 'PAYTM', description: 'Get 5% Cashback'},
+    {id: 3, title: 'GOOGLE PAY', description: 'Extra 100 Points'},
+    {id: 4, title: 'PHONEPE', description: 'Free ₹50 Voucher'},
+  ]
+
+  const toggleDropdown = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
+    setShowDetails(!showDetails)
+  }
+
+  const toggleDetails = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
+    setShowDetailOFCurrent(!showDetailOFCurrent)
+  }
+
+  return (
+    <View style={styles.container}>
+      <View style={{paddingHorizontal: 16}}>
+        <View style={styles.card}>
+          <TouchableOpacity
+            style={styles.headerOFCard}
+            onPress={toggleDropdown}>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Text style={styles.cardTitle}>Current Balance</Text>
+              <Icon
+                name={showDetails ? 'keyboard-arrow-up' : 'keyboard-arrow-down'}
+                size={24}
+                color='#171449'
+                style={{marginLeft: 4}}
+              />
+            </View>
+            <Text style={styles.valueOfCurrent}>₹ 9</Text>
+          </TouchableOpacity>
+
+          {showDetails && (
+            <>
+              <View style={styles.row}>
+                <Text style={styles.label}>Amount Unutilised</Text>
+                <Text style={styles.valueOfCurrent}>₹ 1,250.00</Text>
+              </View>
+              <View style={styles.row}>
+                <Text style={styles.label}>Winnings</Text>
+                <Text style={styles.valueOfCurrent}>₹ 3,420.00</Text>
+              </View>
+            </>
+          )}
+        </View>
+
+        <View style={styles.cardAmount}>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+            <View style={styles.amountContainer}>
+              <Text style={styles.cardTitle}>Amount to add</Text>
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <Text style={styles.currency}>₹</Text>
+                <TextInput
+                  style={styles.amountInput}
+                  value={amount}
+                  onChangeText={setAmount}
+                  keyboardType='numeric'
+                  placeholder='0'
+                />
+              </View>
+            </View>
+
+            <View style={styles.quickAmounts}>
+              {[20, 50].map(value => (
+                <TouchableOpacity
+                  key={value}
+                  style={[
+                    styles.amountBtn,
+                    parseFloat(amount) === value && styles.selectedAmountBtn,
+                  ]}
+                  onPress={() => setAmount(value.toString())}>
+                  <Text
+                    style={[
+                      styles.amountBtnText,
+                      parseFloat(amount) === value && styles.selectedAmountText,
+                    ]}>
+                    ₹ {value}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          </View>
+        </View>
+
+        <View style={styles.cardAddToCurrent}>
+          <TouchableOpacity
+            onPress={toggleDetails}
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              paddingVertical: 10,
+            }}>
+            <Text style={{fontWeight: 'bold', fontSize: 14}}>
+              Added to Current Balance
+            </Text>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Text style={{fontWeight: 'bold', fontSize: 14}}>₹ 100</Text>
+              <Icon
+                name={
+                  showDetailOFCurrent
+                    ? 'keyboard-arrow-up'
+                    : 'keyboard-arrow-down'
+                }
+                size={24}
+                color='#171449'
+                style={{marginLeft: 4}}
+              />
+            </View>
+          </TouchableOpacity>
+
+          {showDetailOFCurrent && (
+            <>
+              <View style={styles.divider} />
+              <View style={styles.row}>
+                <Text style={styles.label}>
+                  Deposit Amount (excl. Govt. Tax)
+                </Text>
+                <Text style={styles.value}>₹ {depositAmount.toFixed(2)}</Text>
+              </View>
+              <View style={styles.row}>
+                <Text style={styles.label}>Govt. Tax (28% GST)</Text>
+                <Text style={styles.value}>₹ {tax.toFixed(2)}</Text>
+              </View>
+              <View style={styles.divider} />
+              <View style={styles.row}>
+                <Text style={[styles.label, styles.totalLabel]}>Total</Text>
+                <Text style={[styles.value, styles.totalValue]}>
+                  ₹ {total.toFixed(2)}
+                </Text>
+              </View>
+              <View style={styles.row}>
+                <Text style={styles.label}>Discount Points Worth</Text>
+                <Text style={styles.discountPoints}>₹ 10.00</Text>
+              </View>
+            </>
+          )}
+        </View>
+        <CuponCard />
+      </View>
+
+      <View style={styles.ButtonContainer}>
+        <Icon
+          name={'security'}
+          size={24}
+          color='#171449'
+          style={styles.securityIcon}
+        />
+        <Text style={styles.VerifyTest}>
+          Proceed to Verify your details and join the contest
+        </Text>
+        <TouchableOpacity
+          onPress={() => navigate.navigate('AddCash')}
+          style={styles.primaryButton}>
+          <Text style={styles.buttonText}>VERIFY TO ADD ₹ {amount}</Text>
+        </TouchableOpacity>
+      </View>
+      {/* {console.log(modalVisible)}
+      <OfferDetailsModal
+        modalVisible={modalVisible}
+        onClose={() => setModalVisible(false)}
+      /> */}
+    </View>
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8f9fe',
+    backgroundColor: '#F5F7FB',
     justifyContent: 'space-between',
-  },
-  topContainer: {
-    flex: 1,
   },
   card: {
-    backgroundColor: '#1a1a2e',
-    borderRadius: 24,
-    padding: 25,
-    margin: 20,
-    marginTop: 15,
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 10},
-    shadowOpacity: 0.15,
-    shadowRadius: 20,
-    elevation: 10,
-    overflow: 'hidden',
+    borderRadius: 10,
+    padding: 1,
+    marginBottom: 1,
   },
-  circle1: {
-    position: 'absolute',
-    width: 250,
-    height: 250,
-    borderRadius: 125,
-    backgroundColor: 'rgba(255,255,255,0.1)',
-    top: -50,
-    right: -80,
+  cardAmount: {
+    paddingBottom: 1,
   },
-  circle2: {
-    position: 'absolute',
-    width: 180,
-    height: 180,
-    borderRadius: 90,
-    backgroundColor: 'rgba(255,255,255,0.05)',
-    bottom: -70,
-    left: -50,
-  },
-  balanceLabel: {
-    fontSize: 16,
-    color: 'rgba(255,255,255,0.7)',
-    marginBottom: 5,
-  },
-  balanceAmount: {
-    fontSize: 36,
-    fontWeight: '800',
-    color: '#fff',
-    marginBottom: 25,
-  },
-  cardDetails: {
+  headerOFCard: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'flex-end',
-    marginTop: 15,
-  },
-  cardInfo: {
-    marginRight: 20,
-  },
-  cardLabel: {
-    fontSize: 12,
-    color: 'rgba(255,255,255,0.6)',
-    marginBottom: 4,
-  },
-  cardValue: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#fff',
-  },
-  chipIcon: {
-    width: 50,
-    height: 40,
-    resizeMode: 'contain',
-  },
-  buttonContainer: {
-    paddingHorizontal: 20,
-    paddingBottom: 20,
-  },
-  actionButton: {
-    width: '100%',
-    paddingVertical: 18,
-    borderRadius: 16,
     alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: '#4e54c8',
-    shadowOffset: {width: 0, height: 6},
-    shadowOpacity: 0.25,
-    shadowRadius: 10,
-    elevation: 8,
+    paddingVertical: 10,
   },
-  addButton: {
-    backgroundColor: '#171449',
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 18,
+  valueOfCurrent: {
+    fontSize: 14,
     fontWeight: '700',
   },
-  transactionsContainer: {
-    backgroundColor: '#fff',
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    marginTop: 10,
-    padding: 25,
-    paddingTop: 20,
-    flex: 1,
+  cardTitle: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#1E232C',
   },
-  sectionHeader: {
+  value: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#1E232C',
+  },
+  row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    marginBottom: 6,
+  },
+  label: {
+    fontSize: 12,
+    color: '#6A6A6A',
+  },
+  amountContainer: {
+    borderWidth: 1,
+    borderColor: '#90EE90',
+    width: '48%',
+    borderRadius: 10,
+    padding: 6,
     marginBottom: 20,
   },
-  sectionTitle: {
+  currency: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#1a1a2e',
+    color: '#1E232C',
+    marginRight: 2,
   },
-  viewAll: {
-    fontSize: 15,
-    color: '#4e54c8',
-    fontWeight: '600',
-  },
-  transactionItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f5f5f5',
-  },
-  transactionIcon: {
-    width: 50,
-    height: 50,
-    borderRadius: 15,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 15,
-  },
-  iconText: {
-    fontSize: 22,
-  },
-  transactionDetails: {
+  amountInput: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#1E232C',
     flex: 1,
   },
-  transactionName: {
+  quickAmounts: {
+    flexDirection: 'row',
+    width: '50%',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
+  amountBtn: {
+    backgroundColor: '#EDF1FF',
+    borderRadius: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+  },
+  selectedAmountBtn: {
+    backgroundColor: '#171449',
+  },
+  amountBtnText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1a1a2e',
-    marginBottom: 4,
+    color: '#4A6CF7',
   },
-  transactionDate: {
-    fontSize: 13,
-    color: '#888',
+  selectedAmountText: {
+    color: '#FFFFFF',
   },
-  transactionAmount: {
-    fontSize: 16,
+  cardAddToCurrent: {
+    borderWidth: 1,
+    borderColor: '#9090EE',
+    padding: 10,
+    borderRadius: 10,
+    backgroundColor: '#fff',
+  },
+  divider: {
+    height: 1,
+    backgroundColor: '#EEE',
+    marginVertical: 12,
+  },
+  totalLabel: {
     fontWeight: '700',
-    color: '#FF4D4D',
   },
-  positiveAmount: {
-    color: '#10B981',
+  totalValue: {
+    fontSize: 12,
+    fontWeight: '800',
+    color: '#4A6CF7',
+  },
+  discountPoints: {
+    color: '#27AE60',
+    fontWeight: '700',
+  },
+  primaryButton: {
+    backgroundColor: '#19A519',
+    borderRadius: 10,
+    alignItems: 'center',
+    marginBottom: 24,
+    shadowColor: '#4A6CF7',
+    shadowOffset: {width: 0, height: 4},
+    shadowOpacity: 0.3,
+    shadowRadius: 6,
+    elevation: 5,
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+  },
+  buttonText: {
+    color: '#FFFFFF',
+    fontSize: 14,
+    fontWeight: '700',
+  },
+  paymentOffers: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 15,
+  },
+  sectionHeader: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#6A6A6A',
+    marginBottom: 16,
+  },
+  offerCard: {
+    width: 180,
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    marginRight: 16,
+    padding: 16,
+    position: 'relative',
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderStyle: 'dashed',
+    borderColor: '#90EE90',
+  },
+  offerCardSelected: {
+    borderColor: '#90EE90',
+  },
+  offerContent: {
+    flex: 1,
+    paddingHorizontal: 10,
+  },
+  offerBadge: {
+    backgroundColor: '#ffefd5',
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    borderRadius: 6,
+    marginBottom: 8,
+    alignSelf: 'flex-start',
+  },
+  offerTitle: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    color: '#ff6600',
+  },
+  offerDesc: {
+    fontSize: 13,
+    color: '#444',
+  },
+  cutLeft: {
+    position: 'absolute',
+    left: -10,
+    top: '55%',
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    backgroundColor: '#f5f5f5',
+  },
+  cutRight: {
+    position: 'absolute',
+    right: -10,
+    top: '55%',
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    backgroundColor: '#f5f5f5',
+  },
+  ButtonContainer: {
+    backgroundColor: '#fff',
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    position: 'relative',
+  },
+  VerifyTest: {
+    fontSize: 14,
+    paddingVertical: 12,
+  },
+  securityIcon: {
+    position: 'absolute',
+    top: -10,
+    left: 40,
   },
 })
+
+export default Wallet

@@ -54,7 +54,7 @@ const CardOfEvent = () => {
 
   return (
     <ScrollView
-      contentContainerStyle={{paddingHorizontal: 16, paddingVertical: 0}}
+      contentContainerStyle={{paddingHorizontal: 15, paddingVertical: 0}}
       style={{backgroundColor: '#F5F5F5'}}
       >
       {cardsData.map((card, index) => (
