@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   iconLabel: {
-    fontSize: 10,
+    fontSize: 14,
     color: '#171449',
     marginTop: 2,
     textAlign: 'center',

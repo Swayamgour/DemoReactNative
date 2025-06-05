@@ -10,12 +10,12 @@ import {
 } from 'react-native'
 
 const upiApps = [
-    {id: '3', name: 'Paytm', image: require('../assets/image/paytm.webp')},
-    {id: '4', name: 'Amazon Pay', image: require('../assets/image/amazon.webp')},
-    {id: '5', name: 'BHIM', image: require('../assets/image/bhim.webp')},
-    {id: '6', name: 'Freecharge', image: require('../assets/image/phone.webp')},
-    {id: '2', name: 'Google Pay', image: require('../assets/image/phone.webp')},
-    {id: '1', name: 'PhonePe', image: require('../assets/image/gpay.webp')},
+  {id: '3', name: 'Paytm', image: require('../assets/image/paytm1.png')},
+  {id: '4', name: 'Amazon Pay', image: require('../assets/image/amazon.png')},
+  {id: '5', name: 'BHIM', image: require('../assets/image/bhim1.png')},
+  {id: '6', name: 'Freecharge', image: require('../assets/image/freecharge.png')},
+  {id: '2', name: 'Google Pay', image: require('../assets/image/gpay.webp')},
+  {id: '1', name: 'PhonePe', image: require('../assets/image/phone2.png')},
   // Add more if needed
 ]
 
@@ -43,6 +43,7 @@ const PaymentUPI = () => {
         keyExtractor={item => item.id}
         numColumns={4}
         contentContainerStyle={styles.appList}
+        scrollEnabled={false} 
       />
 
       {upiApps.length > 4 && (
@@ -60,10 +61,7 @@ const PaymentUPI = () => {
 
 const styles = StyleSheet.create({
   paymentCup: {
-    // backgroundColor: '#f5f5f5',
-    // padding: 16,
     borderRadius: 12,
-    // margin: 16,
   },
   debitCardCon: {
     marginBottom: 10,
@@ -80,7 +78,6 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width / 4 - 15,
     alignItems: 'center',
     marginBottom: 16,
-    // justifyContent: 'space-between',
   },
   appImage: {
     width: 50,

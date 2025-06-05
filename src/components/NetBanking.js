@@ -56,17 +56,8 @@ const NetBanking = () => {
         keyExtractor={item => item.id}
         numColumns={4}
         contentContainerStyle={styles.appList}
+        scrollEnabled={false}
       />
-
-      {/* {upiApps.length > 4 && (
-        <TouchableOpacity
-          style={styles.showAllButton}
-          onPress={() => setShowAll(!showAll)}>
-          <Text style={styles.showAllText}>
-            {showAll ? 'Hide' : 'Show More'}
-          </Text>
-        </TouchableOpacity>
-      )} */}
     </View>
   )
 }

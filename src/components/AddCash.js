@@ -72,7 +72,7 @@ function AddCash () {
               {/* Left Section */}
               <View style={styles.leftSection}>
                 <Image
-                  source={require('../assets/image/phone.webp')}
+                  source={require('../assets/image/phone2.png')}
                   style={styles.image}
                   resizeMode='contain'
                 />
@@ -145,7 +145,7 @@ function AddCash () {
               {/* Left Section */}
               <View style={styles.leftSection}>
                 <Image
-                  source={require('../assets/image/amazon.webp')}
+                  source={require('../assets/image/amazon.png')}
                   style={styles.image}
                   resizeMode='contain'
                 />
@@ -197,10 +197,10 @@ function AddCash () {
           </View>
 
           <View style={{paddingVertical: 20}}>
-            <Text style={{textAlign: 'center', color: '#EDEADE'}}>
+            <Text style={{textAlign: 'center', color: '#757d7c'}}>
               Earning with Learning
             </Text>
-            <Text style={{textAlign: 'center', color: '#EDEADE'}}>
+            <Text style={{textAlign: 'center', color: '#757d7c'}}>
               100% Secure Transaction
             </Text>
           </View>
