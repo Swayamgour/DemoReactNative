@@ -20,7 +20,11 @@ export default function CustomDrawerContent ({navigation}) {
       <View style={styles.drawerBox}>
         {/* //
         You can also use Ionicons, FontAwesome, etc. */}
-        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('Profile')
+            navigation.closeDrawer()
+          }}>
           <View style={styles.profileSection}>
             <View style={styles.avatarWrapper}>
               <Image
@@ -37,32 +41,40 @@ export default function CustomDrawerContent ({navigation}) {
             </View>
             <View>
               <Text style={styles.name}>Riveyra</Text>
-              <Text style={styles.level}>Level 10</Text>
+              <Text style={styles.level}>8989898989</Text>
             </View>
           </View>
         </TouchableOpacity>
 
         <View style={styles.profileSectionSecondary}>
           <Image
-            source={require('../../src/assets/Swiper.png')}
+            source={require('../../src/assets/image/swiperImage.jpeg')}
             style={styles.banner}
             resizeMode='contain'
           />
 
           <TouchableOpacity
-            onPress={() => navigation.navigate('Wallet')}
+            onPress={() => {
+              navigation.navigate('Wallet')
+              navigation.closeDrawer()
+            }}
             style={styles.itemRow}>
             <Icon name='wallet-outline' size={20} />
             <Text style={styles.label}>My Balance</Text>
             <Text style={styles.rightText}>50 Rs.</Text>
           </TouchableOpacity>
 
-          <View style={styles.itemRow}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Invite')
+              navigation.closeDrawer()
+            }}
+            style={styles.itemRow}>
             <Text style={styles.label}>Collect 500 Rs.</Text>
             <TouchableOpacity style={styles.inviteBtn}>
               <Text style={styles.inviteText}>INVITE</Text>
             </TouchableOpacity>
-          </View>
+          </TouchableOpacity>
 
           <DrawerItem icon='search-outline' label='Search' />
           <DrawerItem icon='gift-outline' label='My Cards' dot />

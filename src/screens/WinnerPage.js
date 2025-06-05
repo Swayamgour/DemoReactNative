@@ -171,7 +171,7 @@ const WinnerPage = () => {
         {/* Header */}
 
         <Animatable.View
-          animation='fadeInDown'
+          animation='fadeInUp'
           duration={1000}
           style={styles.header}>
           <Text style={styles.headerTitle}>Our Winners</Text>
@@ -317,6 +317,7 @@ const styles = StyleSheet.create({
   categoryContainer: {
     paddingHorizontal: 15,
     paddingVertical: 0,
+    alignItems:'center'
   },
   categoryButton: {
     flexDirection: 'row',

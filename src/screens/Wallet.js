@@ -98,6 +98,7 @@ const Wallet = () => {
                   onChangeText={setAmount}
                   keyboardType='numeric'
                   placeholder='0'
+                  autoFocus
                 />
               </View>
             </View>

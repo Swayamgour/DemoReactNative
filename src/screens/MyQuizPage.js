@@ -213,7 +213,7 @@ const MyQuizPage = () => {
 
         {/* Question Card */}
         <Animatable.View
-          animation='fadeInRight'
+          animation='fadeInUp'
           duration={800}
           delay={500}
           style={[styles.questionCard, {transform: [{scale: pulseAnim}]}]}>
@@ -238,7 +238,7 @@ const MyQuizPage = () => {
         <Animatable.View
           animation='fadeInUp'
           duration={800}
-          delay={700}
+          delay={600}
           style={styles.optionsContainer}>
           {questions[currentQuestion].options.map((option, index) => (
             <TouchableOpacity

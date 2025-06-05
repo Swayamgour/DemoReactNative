@@ -1,6 +1,7 @@
 // AppTabs.js or Navigation.js
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
+import { BackHandler, ToastAndroid } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Dashboard from './Dashboard'
 import WinnerPage from './WinnerPage'
@@ -8,11 +9,39 @@ import MyQuizPage from './MyQuizPage'
 import RewordPage from './RewordPage'
 import News from './News'
 
+
 const Tab = createBottomTabNavigator()
 
 const AppTabs = () => {
+
+  // useRef
+  // useEffect
+  // const backPressTime = useRef(0)
+
+  // useEffect(() => {
+  //   const backAction = () => {
+  //     const now = Date.now()
+  //     if (backPressTime.current && now - backPressTime.current < 2000) {
+  //       BackHandler.exitApp()
+  //       return true
+  //     }
+
+  //     backPressTime.current = now
+  //     ToastAndroid.show('Press back again to exit', ToastAndroid.SHORT)
+  //     return true
+  //   }
+
+  //   const backHandler = BackHandler.addEventListener(
+  //     'hardwareBackPress',
+  //     backAction,
+  //   )
+
+  //   return () => backHandler.remove()
+  // }, [])
+
   return (
     <Tab.Navigator
+    
       screenOptions={({route}) => ({
         headerShown: true,
         tabBarIcon: ({color, size}) => {
@@ -42,6 +71,8 @@ const AppTabs = () => {
         name='Dashboard'
         component={Dashboard}
         options={{headerShown: false}}
+        
+
       />
       <Tab.Screen
         name='Winner'

@@ -25,6 +25,8 @@ import NotificationPage from './src/screens/NotificationPage'
 import SplashScreen from './src/components/SplashScreen'
 import Tab from './src/components/Tab'
 import AddCash from './src/components/AddCash'
+import InviteEarnPage from './src/screens/InviteEarnPage'
+import WithdrawPage from './src/screens/WithdrawPage'
 
 const Stack = createNativeStackNavigator()
 
@@ -32,7 +34,7 @@ export default function App () {
   return (
     <Provider store={store}>
       <SafeAreaProvider>
-        <StatusBar barStyle='default' />
+        {/* <StatusBar barStyle='light-content' /> */}
 
         <NavigationContainer>
           {/* <AppTabs /> */}
@@ -72,10 +74,7 @@ export default function App () {
               component={DrawerNavigation}
               options={{headerShown: false}}
             />
-            {/* <Stack.Screen name='Winner' component={WinnerPage} />
-            <Stack.Screen name='Quiz' component={MyQuizPage} />
-            <Stack.Screen name='Rewards' component={RewordPage} />
-            <Stack.Screen name='News' component={News} /> */}
+
             <Stack.Screen
               name='Wallet'
               component={Wallet}
@@ -137,6 +136,18 @@ export default function App () {
               name='AddCash'
               component={AddCash}
               options={{title: 'Notification '}} // optional
+            />
+            <Stack.Screen
+              name='Invite'
+              component={InviteEarnPage}
+              // options={{title: 'Invite  & Earn '}} // optional
+              options={{title: 'Invite & Earn'}}
+            />
+            <Stack.Screen
+              name='Withdraw'
+              component={WithdrawPage}
+              // options={{title: 'Invite  & Earn '}} // optional
+              options={{title: 'Withdraw'}}
             />
           </Stack.Navigator>
         </NavigationContainer>

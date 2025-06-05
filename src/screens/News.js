@@ -199,15 +199,16 @@ const News = () => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <StatusBar barStyle='light-content' backgroundColor='#0c1e3e' />
+      {/* <StatusBar barStyle='light-content' backgroundColor='#0c1e3e' /> */}
 
       {/* Header */}
       <Animated.View style={[styles.header, {height: headerHeight}]}>
-        <LinearGradient
-          colors={['#0c1e3e', '#152b50']}
+        <View
+          // colors={['#0c1e3e', '#152b50']}
           style={styles.headerGradient}
-          start={{x: 0, y: 0}}
-          end={{x: 1, y: 1}}>
+          // start={{x: 0, y: 0}}
+          // end={{x: 1, y: 1}}
+          >
           <View style={styles.headerContent}>
             <View style={styles.headerTop}>
               <Text style={styles.headerTitle}>NewsDaily</Text>
@@ -244,7 +245,7 @@ const News = () => {
               </Animatable.View>
             )}
           </View>
-        </LinearGradient>
+        </View>
       </Animated.View>
 
       {/* Categories */}
@@ -314,7 +315,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 28,
     fontWeight: '800',
-    color: '#fff',
+    // color: '#fff',
     letterSpacing: 0.5,
   },
   headerIcons: {
@@ -334,7 +335,7 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
   },
   featuredTitle: {
-    color: '#fff',
+    // color: '#fff',
     fontSize: 22,
     fontWeight: '800',
     marginBottom: 15,

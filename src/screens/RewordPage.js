@@ -142,11 +142,9 @@ const RewordPage = () => {
   return (
     <View style={styles.container}>
       <Animatable.View animation='fadeInUp' duration={1000}>
-        <LinearGradient
-          colors={['#1e1e3f', '#2d2b55']}
-          style={styles.headerGradient}
-          start={{x: 0, y: 0}}
-          end={{x: 1, y: 0}}>
+        <View
+          // colors={['#1e1e3f', '#2d2b55']}
+          style={styles.headerGradient}>
           <View style={styles.header}>
             <Text style={styles.title}>Your Rewards</Text>
             <View style={styles.pointsDisplay}>
@@ -175,7 +173,7 @@ const RewordPage = () => {
               />
             </View>
           </View>
-        </LinearGradient>
+        </View>
       </Animatable.View>
 
       {/* Tabs */}
@@ -321,7 +319,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: '800',
     letterSpacing: 0.5,
-    color: '#fff',
+    // color: '#fff',
   },
   pointsDisplay: {
     flexDirection: 'row',
@@ -346,7 +344,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   levelText: {
-    color: '#fff',
+    // color: '#fff',
 
     fontSize: 16,
     fontWeight: '600',

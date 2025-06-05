@@ -56,10 +56,11 @@ const WelcomePage = ({navigation}) => {
   }
 
   return (
-    <ImageBackground
-      source={require('../assets/background.png')} // 🔁 Replace with your background image path
+    <View
+      // source={require('../assets/background.png')} // 🔁 Replace with your background image path
       style={styles.background}
-      resizeMode='cover'>
+      // resizeMode='cover'>
+    >
       <StatusBar barStyle='light-content' />
       <View style={styles.overlay}>
         {/* Logo */}
@@ -98,7 +99,7 @@ const WelcomePage = ({navigation}) => {
               style={styles.NextBtn}
               title='Next'
               // onPress={handleNext}
-              >
+            >
               <Text style={styles.NextBtnFont}>Loading...</Text>
             </TouchableOpacity>
           ) : (
@@ -113,7 +114,7 @@ const WelcomePage = ({navigation}) => {
         {/* )} */}
         {/* )} */}
       </View>
-    </ImageBackground>
+    </View>
   )
 }
 

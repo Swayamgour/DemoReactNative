@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {View, StyleSheet} from 'react-native'
+import {View, StyleSheet, StatusBar} from 'react-native'
 import FastImage from 'react-native-fast-image'
 
 const SplashScreen = ({navigation}) => {
@@ -14,6 +14,7 @@ const SplashScreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+       <StatusBar barStyle='dark-content' />
       <FastImage
         source={require('../assets/image/gif.gif')} // put your gif in assets folder
         style={styles.gif}
