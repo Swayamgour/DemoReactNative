@@ -511,7 +511,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 20,
     padding: 15,
-    marginTop: 10,
+    // marginTop: 10,
   },
   historyItem: {
     flexDirection: 'row',

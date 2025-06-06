@@ -72,7 +72,7 @@ export default function App () {
             <Stack.Screen
               name='DrawerNavigation'
               component={DrawerNavigation}
-              options={{headerShown: false}}
+              options={{headerShown: false}} 
             />
 
             <Stack.Screen

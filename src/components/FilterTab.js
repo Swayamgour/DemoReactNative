@@ -3,53 +3,50 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
   ScrollView,
   TouchableOpacity,
 } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-
-import {useNavigation} from '@react-navigation/native' // ✅ Import the hook
+import {useNavigation} from '@react-navigation/native'
 
 function FilterTab () {
   const navigation = useNavigation()
 
-  let array = [
+  const subjects = [
     {
-      name: 'Home',
-      icon: <Ionicons name='home-outline' size={22} color='#fff' />,
-      Navigate: 'DrawerNavigation',
+      name: 'Hindi',
+      icon: <Ionicons name='language-outline' size={18} color='#fff' />,
+      //  Navigate: 'HindiScreen',
     },
     {
-      name: 'Courses',
-      icon: <Ionicons name='book-outline' size={22} color='#fff' />,
-      Navigate: 'Profile',
+      name: 'English',
+      icon: <Ionicons name='book-outline' size={18} color='#fff' />,
+      //  Navigate: 'EnglishScreen',
     },
     {
-      name: 'Profile',
-      icon: <Ionicons name='person-outline' size={22} color='#fff' />,
-      Navigate: 'Profile',
+      name: 'Physics',
+      icon: <Ionicons name='speedometer-outline' size={18} color='#fff' />,
+      //  Navigate: 'PhysicsScreen',
     },
     {
-      name: 'Chat',
-      icon: <Ionicons name='chatbubble-outline' size={22} color='#fff' />,
-      Navigate: 'Profile',
+      name: 'Chemistry',
+      icon: <Ionicons name='flask-outline' size={18} color='#fff' />,
+      //  Navigate: 'ChemistryScreen',
     },
     {
-      name: 'Stats',
-      icon: <Ionicons name='bar-chart-outline' size={22} color='#fff' />,
-      Navigate: 'Profile',
+      name: 'Math',
+      icon: <Ionicons name='calculator-outline' size={18} color='#fff' />,
+      //  Navigate: 'MathScreen',
     },
     {
-      name: 'Help',
-      icon: <Ionicons name='help-circle-outline' size={22} color='#fff' />,
-      Navigate: 'Profile',
+      name: 'Biology',
+      icon: <Ionicons name='leaf-outline' size={18} color='#fff' />,
+      //  Navigate: 'BiologyScreen',
     },
-
     {
-      name: 'More',
-      icon: <Ionicons name='ellipsis-horizontal' size={22} color='#fff' />,
-      Navigate: 'Profile',
+      name: 'Computer',
+      icon: <Ionicons name='laptop-outline' size={18} color='#fff' />,
+      //  Navigate: 'ComputerScreen',
     },
   ]
 
@@ -57,12 +54,12 @@ function FilterTab () {
     <View style={{paddingHorizontal: 15}}>
       <View style={styles.iconContainer}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {array?.map((item, index) => (
+          {subjects.map((item, index) => (
             <TouchableOpacity
-              onPress={() => navigation.navigate(item.Navigate)}
+              // onPress={() => navigation.navigate(item.Navigate)}
               key={index}
               style={styles.iconItem}>
-              {/* {item.icon} */}
+              {item.icon}
               <Text style={styles.iconLabel}>{item.name}</Text>
             </TouchableOpacity>
           ))}
@@ -79,24 +76,18 @@ const styles = StyleSheet.create({
     height: 60,
     backgroundColor: '#171449',
     paddingHorizontal: 10,
-    color: '#fff',
-    // marginHorizontal:15,
-    borderRadius:10,
-    // paddingHorizontal:15
-    // paddingHorizontal: 15
+    borderRadius: 10,
   },
   iconItem: {
     width: 60,
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: 8,
-    color: '#fff',
   },
   iconLabel: {
-    fontSize: 14,
-    color: '#171449',
+    fontSize: 12,
+    color: '#fff',
     marginTop: 2,
     textAlign: 'center',
-    color: '#fff',
   },
 })
