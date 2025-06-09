@@ -8,6 +8,7 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
+  TextInput as RNTextInput,
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import {TextInput} from 'react-native-paper'
@@ -15,29 +16,31 @@ import SocialMedia from '../components/SocialMedia'
 import {useNavigation} from '@react-navigation/native'
 
 const EWLLogin = () => {
-  const [text, setText] = React.useState('')
+  const [mobile, setMobile] = React.useState('')
   const scrollRef = useRef(null)
-
+  const inputRef = useRef(null)
   const navigate = useNavigation()
 
   const handleFocus = () => {
-    // Scroll to input when focused
-    scrollRef.current?.scrollTo({y: 300, animated: true}) // adjust y as needed
+    // Scroll to the input position
+    scrollRef.current?.scrollTo({y: 200, animated: true})
   }
 
+  // Scroll back to the top when the input loses focus
   const handleBlur = () => {
-    // Scroll back to top
     scrollRef.current?.scrollTo({y: 0, animated: true})
   }
 
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : null}
-      style={{flex: 1}}>
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={{flex: 1}}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 60 : 0}>
       <ScrollView
         ref={scrollRef}
         contentContainerStyle={{flexGrow: 1}}
-        keyboardShouldPersistTaps='handled'>
+        keyboardShouldPersistTaps='handled'
+        showsVerticalScrollIndicator={false}>
         <LinearGradient
           colors={['#171449', '#3F4C77']}
           start={{x: 0, y: 0}}
@@ -53,24 +56,25 @@ const EWLLogin = () => {
 
           <View style={styles.bottomCard}>
             <TextInput
+              ref={inputRef}
               label='Mobile'
               placeholder='+91-8887699189'
               placeholderTextColor='#888'
               keyboardType='numeric'
               mode='outlined'
-              value={text}
+              value={mobile}
               onFocus={handleFocus}
               onBlur={handleBlur}
-              onChangeText={text => setText(text)}
+              onChangeText={setMobile}
               style={styles.input}
               theme={{
-                roundness: 10, // 👈 Apply borderRadius here
+                roundness: 10,
                 colors: {
-                  primary: '#171449', // active border and label
-                  text: '#000', // input text
-                  placeholder: '#888', // placeholder
-                  background: '#fff', // background color
-                  outlineColor: '#171449', // 👈 outline border color
+                  primary: '#171449',
+                  text: '#000',
+                  placeholder: '#888',
+                  background: '#fff',
+                  outlineColor: '#171449',
                 },
               }}
             />
@@ -103,13 +107,11 @@ const EWLLogin = () => {
   )
 }
 
-export default EWLLogin
-
 const styles = StyleSheet.create({
   gradient: {
     flex: 1,
     alignItems: 'center',
-    paddingTop: 80,
+    paddingTop: Platform.select({ios: 80, android: 40}),
     justifyContent: 'space-between',
   },
   logoContainer: {
@@ -121,24 +123,17 @@ const styles = StyleSheet.create({
     height: 250,
     marginBottom: 10,
   },
-
   bottomCard: {
     backgroundColor: '#fff',
     width: '100%',
     borderTopLeftRadius: 50,
     borderTopRightRadius: 50,
-    // padding: 20,
     marginTop: 20,
     alignItems: 'center',
     elevation: 10,
     paddingVertical: 50,
     paddingHorizontal: 25,
-  },
-  label: {
-    alignSelf: 'flex-start',
-    marginBottom: 5,
-    color: '#171449',
-    fontWeight: 'bold',
+    paddingBottom: 70, // Extra padding for keyboard space
   },
   input: {
     width: '100%',
@@ -175,3 +170,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
 })
+
+export default EWLLogin

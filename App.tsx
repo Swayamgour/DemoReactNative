@@ -43,7 +43,7 @@ export default function App () {
 
         <NavigationContainer>
           {/* <AppTabs /> */}
-          <Stack.Navigator initialRouteName='Welcome'>
+          <Stack.Navigator initialRouteName='Login'>
             <Stack.Screen
               name='Tab'
               component={Tab}
