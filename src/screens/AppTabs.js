@@ -1,61 +1,71 @@
 // navigation/AppTabs.js
-import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { tabScreens, tabNavigatorConfig } from '../config/tabConfig';
-import { useNavigation } from '@react-navigation/native';
-import { BackHandler, ToastAndroid } from 'react-native';
+import React from 'react'
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
+import Icon from 'react-native-vector-icons/FontAwesome'
+import {tabScreens, tabNavigatorConfig} from '../config/tabConfig'
+import {useNavigation} from '@react-navigation/native'
+import {BackHandler, ToastAndroid} from 'react-native'
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator()
 
-const withBackHandler = (WrappedComponent) => {
-  return (props) => {
-    const navigation = useNavigation();
-    const backPressTime = React.useRef(0);
+const withBackHandler = WrappedComponent => {
+  return props => {
+    const navigation = useNavigation()
+    const backPressTime = React.useRef(0)
 
     // Handle back press based on navigation state
     const handleBackPress = () => {
       if (navigation.canGoBack()) {
-        navigation.goBack();
-        return true;
+        navigation.goBack()
+        return true
       }
 
-      const now = Date.now();
+      const now = Date.now()
       if (backPressTime.current && now - backPressTime.current < 2000) {
-        BackHandler.exitApp();
-        return true;
+        BackHandler.exitApp()
+        return true
       }
 
-      backPressTime.current = now;
-      ToastAndroid.show('Press back again to exit', ToastAndroid.SHORT);
-      return true;
-    };
+      backPressTime.current = now
+      ToastAndroid.show('Press back again to exit', ToastAndroid.SHORT)
+      return true
+    }
 
     React.useEffect(() => {
       const backHandler = BackHandler.addEventListener(
         'hardwareBackPress',
-        handleBackPress
-      );
+        handleBackPress,
+      )
 
-      return () => backHandler.remove();
-    }, []);
+      return () => backHandler.remove()
+    }, [])
 
-    return <WrappedComponent {...props} />;
-  };
-};
+    return <WrappedComponent {...props} />
+  }
+}
 
 const AppTabs = () => {
   return (
     <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ color, size }) => {
-          const screen = tabScreens.find(s => s.name === route.name);
-          return <Icon name={screen.icon} size={20} color={color} />;
+      screenOptions={({route}) => ({
+        tabBarIcon: ({focused, color, size}) => {
+          const {icon} =
+            tabScreens.find(screen => screen.name === route.name) || {}
+          return <Icon name={icon} size={18} color={color} />
         },
-        ...tabNavigatorConfig
-      })}
-    >
-      {tabScreens.map((screen) => (
+        tabBarActiveTintColor: '#171449',
+        tabBarInactiveTintColor: 'gray',
+        tabBarLabelStyle: {fontSize: 12, marginBottom: 5},
+        tabBarStyle: {
+          backgroundColor: '#fff',
+          borderTopWidth: 1,
+          borderColor: '#ddd',
+          height: 70,
+          paddingVertical: 8,
+        },
+        headerShown: false,
+      })}>
+      {tabScreens.map(screen => (
         <Tab.Screen
           key={screen.name}
           name={screen.name}
@@ -64,7 +74,7 @@ const AppTabs = () => {
         />
       ))}
     </Tab.Navigator>
-  );
-};
+  )
+}
 
-export default AppTabs;
+export default AppTabs

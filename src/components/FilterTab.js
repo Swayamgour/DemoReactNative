@@ -89,5 +89,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     marginTop: 2,
     textAlign: 'center',
+    // fontWeight:500
   },
 })

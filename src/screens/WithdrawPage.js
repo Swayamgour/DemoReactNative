@@ -12,6 +12,7 @@ import {
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import {useNavigation} from '@react-navigation/native'
 
 const {width} = Dimensions.get('window')
 
@@ -55,20 +56,23 @@ const WithdrawPage = () => {
     },
   ]
 
+  const navigate = useNavigation()
+
   const handleWithdraw = () => {
-    if (!amount) {
-      alert('Please enter withdrawal amount')
-      return
-    }
+    navigate.navigate('kycPage')
+    // if (!amount) {
+    //   alert('Please enter withdrawal amount')
+    //   return
+    // }
 
-    if (parseInt(amount) < 100) {
-      alert('Minimum withdrawal amount is ₹100')
-      return
-    }
+    // if (parseInt(amount) < 100) {
+    //   alert('Minimum withdrawal amount is ₹100')
+    //   return
+    // }
 
-    // Process withdrawal logic here
-    alert(`Withdrawal request for ₹${amount} submitted successfully!`)
-    setAmount('')
+    // // Process withdrawal logic here
+    // alert(`Withdrawal request for ₹${amount} submitted successfully!`)
+    // setAmount('')
   }
 
   return (

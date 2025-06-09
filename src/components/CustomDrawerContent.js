@@ -11,6 +11,7 @@ import {
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import version from '../../package.json'
 
 const {height} = Dimensions.get('window')
 
@@ -50,7 +51,7 @@ export default function CustomDrawerContent ({navigation}) {
           <Image
             source={require('../../src/assets/image/swiperImage.jpeg')}
             style={styles.banner}
-            resizeMode='contain'
+            resizeMode='cover'
           />
 
           <TouchableOpacity
@@ -91,6 +92,10 @@ export default function CustomDrawerContent ({navigation}) {
           <Text style={styles.footerItem}>Helpdesk</Text>
           <Text style={styles.footerItem}>Chat With Us</Text>
         </View>
+
+        <View>
+          <Text style={styles.version}>v{version.version} | Made in India</Text>
+        </View>
       </View>
     </View>
   )
@@ -125,6 +130,9 @@ const styles = StyleSheet.create({
     position: 'relative',
     width: 60,
     height: 60,
+    borderRadius: 10,
+
+    
   },
 
   avatar: {
@@ -164,7 +172,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   level: {fontSize: 12, color: '#fff'},
-  banner: {width: '100%', height: 100, borderRadius: 8, marginVertical: 10},
+  banner: {width: '100%', height: 100, borderRadius: 10, marginVertical: 10},
   itemRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -198,5 +206,10 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     fontSize: 14,
     color: '#000',
+  },
+  version: {
+    textAlign: 'center',
+    fontSize: 12,
+    color: 'gray',
   },
 })

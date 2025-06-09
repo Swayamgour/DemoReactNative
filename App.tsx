@@ -19,7 +19,7 @@ import Wallet from './src/screens/Wallet'
 import ChooseAmount from './src/screens/ChooseAmount'
 import PaymentMethod from './src/screens/PaymentMethod'
 import RegistrationPage from './src/screens/RegistrationPage'
-import EventDetailScreen from './src/screens/EventDetailScreen '
+import EventDetailScreen from './src/screens/EventDetailScreen'
 import ProfilePage from './src/screens/ProfilePage'
 import NotificationPage from './src/screens/NotificationPage'
 import SplashScreen from './src/components/SplashScreen'
@@ -27,6 +27,11 @@ import Tab from './src/components/Tab'
 import AddCash from './src/components/AddCash'
 import InviteEarnPage from './src/screens/InviteEarnPage'
 import WithdrawPage from './src/screens/WithdrawPage'
+import KYCScreen from './src/screens/KYCScreen'
+import Welcome from './src/screens/Welcome'
+import EWLLogin from './src/screens/EWLLogin'
+import EWLVerify from './src/screens/EWLVerify'
+import RegistrationForm from './src/screens/RegistrationForm'
 
 const Stack = createNativeStackNavigator()
 
@@ -38,7 +43,7 @@ export default function App () {
 
         <NavigationContainer>
           {/* <AppTabs /> */}
-          <Stack.Navigator initialRouteName='Splash'>
+          <Stack.Navigator initialRouteName='Welcome'>
             <Stack.Screen
               name='Tab'
               component={Tab}
@@ -51,12 +56,22 @@ export default function App () {
             />
             <Stack.Screen
               name='Welcome'
-              component={WelcomePage}
+              component={Welcome}
               options={{headerShown: false}}
             />
             <Stack.Screen
               name='Login'
-              component={Login}
+              component={EWLLogin}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name='otp'
+              component={EWLVerify}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name='reg'
+              component={RegistrationForm}
               options={{headerShown: false}}
             />
             <Stack.Screen
@@ -72,7 +87,7 @@ export default function App () {
             <Stack.Screen
               name='DrawerNavigation'
               component={DrawerNavigation}
-              options={{headerShown: false}} 
+              options={{headerShown: false}}
             />
 
             <Stack.Screen
@@ -148,6 +163,12 @@ export default function App () {
               component={WithdrawPage}
               // options={{title: 'Invite  & Earn '}} // optional
               options={{title: 'Withdraw'}}
+            />
+            <Stack.Screen
+              name='kycPage'
+              component={KYCScreen}
+              // options={{title: 'Invite  & Earn '}} // optional
+              options={{title: 'Kyc Page'}}
             />
           </Stack.Navigator>
         </NavigationContainer>

@@ -12,6 +12,7 @@ import {
 } from 'react-native'
 import Text from '../components/CustomText' // Custom Text component for consistent styling
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import LinearGradient from 'react-native-linear-gradient'
 
 const WelcomePage = ({navigation}) => {
   const [loading, setLoading] = useState(false)
@@ -56,79 +57,75 @@ const WelcomePage = ({navigation}) => {
   }
 
   return (
-    <View
-      // source={require('../assets/background.png')} // 🔁 Replace with your background image path
-      style={styles.background}
-      // resizeMode='cover'>
+    <LinearGradient
+    // colors={['#171449', '#171449', '#6A6A85']}
+    // locations={[0, 0.8, 1]} // 90% first color, 10% last color
+    // start={{x: 0, y: 0}}
+    // end={{x: 1, y: 0}}
+    // style={styles.container}
     >
-      <StatusBar barStyle='light-content' />
-      <View style={styles.overlay}>
-        {/* Logo */}
-        <Image
-          source={require('../assets/logo.png')}
-          style={styles.logo}
-          resizeMode='contain'
-        />
+      <View style={styles.background}>
+        <StatusBar barStyle='light-content' />
+        <View style={styles.overlay}>
+          {/* Logo */}
+          <Image
+            source={require('../assets/logo.png')}
+            style={styles.logo}
+            resizeMode='contain'
+          />
 
-        {/* Text Content */}
-        <View style={styles.textContainer}>
-          {/* <Text style={styles.heading}>Welcome to the Quiz App!</Text> */}
-          <Text style={styles.subText}>Boost your knowledge every day.</Text>
-          <Text style={styles.subText}>Answer interesting questions.</Text>
-          <Text style={styles.subText}>Track your progress over time.</Text>
-          <Text style={styles.subText}>Let’s get started on your journey!</Text>
-        </View>
-
-        {/* Center Image */}
-        <Image
-          source={require('../assets/welcome_logo.png')} // 🔁 Replace with another image if needed
-          style={styles.welcomeImage}
-          resizeMode='contain'
-        />
-
-        {/* Next Button */}
-        {/* {loading ? (
-          <View style={{}}>
-            <Text style={{color: '#fff'}}>Loading...</Text>
-            <ActivityIndicator size='large' color='#fff' />
+          {/* Text Content */}
+          <View style={styles.textContainer}>
+            {/* <Text style={styles.heading}>Welcome to the Quiz App!</Text> */}
+            <Text style={styles.subText}>Boost your knowledge every day.</Text>
+            <Text style={styles.subText}>Answer interesting questions.</Text>
+            <Text style={styles.subText}>Track your progress over time.</Text>
+            <Text style={styles.subText}>
+              Let’s get started on your journey!
+            </Text>
           </View>
-        ) : ( */}
-        <View style={styles.buttonContainer}>
-          {loading ? (
-            <TouchableOpacity
-              style={styles.NextBtn}
-              title='Next'
-              // onPress={handleNext}
-            >
-              <Text style={styles.NextBtnFont}>Loading...</Text>
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity
-              style={styles.NextBtn}
-              title='Next'
-              onPress={handleNext}>
-              <Text style={styles.NextBtnFont}>Next</Text>
-            </TouchableOpacity>
-          )}
+
+          <View style={styles.buttonContainer}>
+            {loading ? (
+              <TouchableOpacity
+                style={styles.NextBtn}
+                title='Next'
+                // onPress={handleNext}
+              >
+                <Text style={styles.NextBtnFont}>Loading...</Text>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                style={styles.NextBtn}
+                title='Next'
+                onPress={handleNext}>
+                <Text style={styles.NextBtnFont}>Next</Text>
+              </TouchableOpacity>
+            )}
+          </View>
         </View>
-        {/* )} */}
-        {/* )} */}
       </View>
-    </View>
+    </LinearGradient>
   )
 }
 
 export default WelcomePage
 
 const styles = StyleSheet.create({
-  background: {
+  container: {
     flex: 1,
+    // background: '#171449',
+    // background:
+    //   'linear-gradient(90deg,rgba(23, 20, 73, 1) 0%, rgba(23, 20, 73, 1) 80%, rgba(106, 106, 133, 1) 100%)',
+  },
+  background: {
+    // flex: 1,
   },
   overlay: {
     flex: 1,
     paddingTop: 60,
     paddingHorizontal: 20,
-    backgroundColor: '#171449', // Optional overlay for readability
+    // backgroundColor: '#171449', // Optional overlay for readability
     justifyContent: 'space-between',
   },
   logo: {
