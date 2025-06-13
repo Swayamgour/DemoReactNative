@@ -1,10 +1,9 @@
 // navigation/AppTabs.js
 import React from 'react'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
-import Icon from 'react-native-vector-icons/FontAwesome'
 import {tabScreens, tabNavigatorConfig} from '../config/tabConfig'
 import {useNavigation} from '@react-navigation/native'
-import {BackHandler, ToastAndroid} from 'react-native'
+import {BackHandler, ToastAndroid, Image, StyleSheet} from 'react-native'
 
 const Tab = createBottomTabNavigator()
 
@@ -13,7 +12,6 @@ const withBackHandler = WrappedComponent => {
     const navigation = useNavigation()
     const backPressTime = React.useRef(0)
 
-    // Handle back press based on navigation state
     const handleBackPress = () => {
       if (navigation.canGoBack()) {
         navigation.goBack()
@@ -49,18 +47,24 @@ const AppTabs = () => {
     <Tab.Navigator
       screenOptions={({route}) => ({
         tabBarIcon: ({focused, color, size}) => {
-          const {icon} =
-            tabScreens.find(screen => screen.name === route.name) || {}
-          return <Icon name={icon} size={18} color={color} />
+          const screen = tabScreens.find(s => s.name === route.name)
+          return (
+            <Image
+              source={screen.icon} // Use directly from screen config
+              style={styles.tabIcon} // Use consistent styling
+              resizeMode='contain'
+            />
+          )
         },
-        tabBarActiveTintColor: '#171449',
+        // tabBarActiveTintColor: '#171449',
         tabBarInactiveTintColor: 'gray',
         tabBarLabelStyle: {fontSize: 12, marginBottom: 5},
         tabBarStyle: {
-          backgroundColor: '#fff',
+          // backgroundColor: '#fff',
           borderTopWidth: 1,
-          borderColor: '#ddd',
-          height: 70,
+          borderColor: '#fff',
+          paddingTop: 10,
+          height: 80,
           paddingVertical: 8,
         },
         headerShown: false,
@@ -76,5 +80,14 @@ const AppTabs = () => {
     </Tab.Navigator>
   )
 }
+
+const styles = StyleSheet.create({
+  tabIcon: {
+    width: 35,
+    height: 35,
+    marginBottom: 10,
+    // tintColor: '#171449',  // Optional: apply color tint
+  },
+})
 
 export default AppTabs

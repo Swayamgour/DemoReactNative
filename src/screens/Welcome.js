@@ -1,27 +1,26 @@
-import React, { useEffect } from 'react'
-import { StyleSheet, Text, View, Image } from 'react-native'
+import React, {useEffect} from 'react'
+import {StyleSheet, Text, View, Image} from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 
-const Welcome = ({ navigation }) => {
+const Welcome = ({navigation}) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       navigation.replace('Login') // Replace with your navigation target
-    }, 3000)
+    }, 2000)
 
     return () => clearTimeout(timeout)
   }, [navigation])
 
   return (
     <LinearGradient
-      colors={['#171449', '#3F4C77']}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 0 }}
-      style={styles.container}
-    >
+      colors={['#171449', '#35419A']}
+      start={{x: 0, y: 0}}
+      end={{x: 1, y: 0}}
+      style={styles.container}>
       <Image
         source={require('../assets/logo.png')}
         style={styles.logo}
-        resizeMode="contain"
+        resizeMode='contain'
       />
     </LinearGradient>
   )

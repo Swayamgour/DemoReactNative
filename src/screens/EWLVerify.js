@@ -97,7 +97,7 @@ const EWLVerify = () => {
         keyboardShouldPersistTaps='handled'
         showsVerticalScrollIndicator={false}>
         <LinearGradient
-          colors={['#171449', '#3F4C77']}
+           colors={['#171449', '#35419A']}
           start={{x: 0, y: 0}}
           end={{x: 1, y: 0}}
           style={styles.gradient}>
@@ -160,7 +160,7 @@ const EWLVerify = () => {
               style={styles.verifyButton}
               disabled={otp.join('').length !== 6}>
               <LinearGradient
-                colors={['#3F4C77', '#171449']}
+                colors={['#171449', '#35419A']}
                 start={{x: 0, y: 0}}
                 end={{x: 1, y: 0}}
                 style={[

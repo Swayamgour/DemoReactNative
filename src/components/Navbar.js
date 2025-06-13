@@ -10,50 +10,11 @@ import {
 import {SafeAreaView} from 'react-native-safe-area-context'
 import MenuIcon from 'react-native-vector-icons/Entypo'
 import Wallet from 'react-native-vector-icons/Ionicons'
-import Notification from 'react-native-vector-icons/MaterialIcons'
+import Notification from 'react-native-vector-icons/Fontisto'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import {useNavigation} from '@react-navigation/native' // ✅ Import the hook
 
 function Navbar () {
-  let array = [
-    {
-      name: 'Home',
-      icon: <Ionicons name='home-outline' size={22} color='#fff' />,
-      Navigate: 'DrawerNavigation',
-    },
-    {
-      name: 'Courses',
-      icon: <Ionicons name='book-outline' size={22} color='#fff' />,
-      Navigate: 'Profile',
-    },
-    {
-      name: 'Profile',
-      icon: <Ionicons name='person-outline' size={22} color='#fff' />,
-      Navigate: 'Profile',
-    },
-    {
-      name: 'Chat',
-      icon: <Ionicons name='chatbubble-outline' size={22} color='#fff' />,
-      Navigate: 'Profile',
-    },
-    {
-      name: 'Stats',
-      icon: <Ionicons name='bar-chart-outline' size={22} color='#fff' />,
-      Navigate: 'Profile',
-    },
-    {
-      name: 'Help',
-      icon: <Ionicons name='help-circle-outline' size={22} color='#fff' />,
-      Navigate: 'Profile',
-    },
-
-    {
-      name: 'More',
-      icon: <Ionicons name='ellipsis-horizontal' size={22} color='#fff' />,
-      Navigate: 'Profile',
-    },
-  ]
-
   const navigation = useNavigation()
 
   return (
@@ -80,11 +41,7 @@ function Navbar () {
           </View> */}
 
           <TouchableOpacity onPress={() => navigation.navigate('Notification')}>
-            <Notification
-              name='notifications-active'
-              size={25}
-              style={styles.icons}
-            />
+            <Notification name='bell' size={25} style={styles.icons} />
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navigation.navigate('Wallet')}>
@@ -119,10 +76,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 20,
     paddingVertical: 1,
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
     elevation: 5,
-    borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30,
+    // borderBottomLeftRadius: 30,
+    // borderBottomRightRadius: 30,
   },
   logo: {
     width: 100,
@@ -139,7 +96,7 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
   },
   icons: {
-    color: '#171449',
+    color: '#3969AF',
   },
   navRightSection: {
     flexDirection: 'row',

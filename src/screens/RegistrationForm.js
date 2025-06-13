@@ -59,7 +59,7 @@ const RegistrationForm = () => {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={{flex: 1}}>
       <LinearGradient
-        colors={['#171449', '#3F4C77']}
+        colors={['#171449', '#35419A']}
         start={{x: 0, y: 0}}
         end={{x: 1, y: 0}}
         style={styles.container}>
@@ -94,10 +94,10 @@ const RegistrationForm = () => {
             {/* Mobile Field */}
             <View style={styles.inputContainer}>
               <View style={styles.inputWithIcon}>
-                <Icon name='phone-outline' size={24} color='#171449' />
+                <Icon name='email-outline' size={24} color='#171449' />
                 <TextInput
                   style={styles.flatInput}
-                  placeholder='Mobile Number'
+                  placeholder='E mail'
                   placeholderTextColor='#999'
                   keyboardType='phone-pad'
                   value={formData.mobile}
@@ -160,6 +160,14 @@ const RegistrationForm = () => {
                   onPress={() => handleInputChange('gender', 'Female')}>
                   <Text style={styles.genderText}>Female</Text>
                 </TouchableOpacity>
+                <TouchableOpacity
+                  style={[
+                    styles.genderOption,
+                    formData.gender === 'Other' && styles.selectedGender,
+                  ]}
+                  onPress={() => handleInputChange('gender', 'Other')}>
+                  <Text style={styles.genderText}>Other</Text>
+                </TouchableOpacity>
               </View>
             </View>
 
@@ -190,7 +198,7 @@ const RegistrationForm = () => {
               onPress={handleSubmit}
               disabled={!formData.agreeTerms}>
               <LinearGradient
-                colors={['#3F4C77', '#171449']}
+                colors={['#171449', '#35419A']}
                 start={{x: 0, y: 0}}
                 end={{x: 1, y: 0}}
                 style={styles.buttonGradient}>
@@ -244,7 +252,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     paddingHorizontal: 0,
-    
   },
   iconStyle: {
     marginRight: 10,
@@ -256,7 +263,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     color: '#171449',
     backgroundColor: 'white',
-    marginLeft:10
+    marginLeft: 10,
   },
   inputUnderline: {
     height: 1.5,
@@ -276,11 +283,11 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   genderOption: {
-    width: '48%',
-    paddingVertical: 12,
+    width: '30%',
+    paddingVertical: 6,
     borderWidth: 1.5,
     borderColor: '#ddd',
-    borderRadius: 8,
+    borderRadius: 18,
     alignItems: 'center',
   },
   selectedGender: {
@@ -324,13 +331,13 @@ const styles = StyleSheet.create({
   termsLink: {
     color: '#3F4C77',
     fontWeight: '500',
-    textDecorationLine: 'underline',
+    // textDecorationLine: 'underline',
   },
   submitButton: {
     borderRadius: 30,
     overflow: 'hidden',
     marginTop: 10,
-    marginBottom:30
+    marginBottom: 30,
   },
   buttonGradient: {
     paddingVertical: 15,

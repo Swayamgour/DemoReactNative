@@ -5,48 +5,27 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
+  Image,
 } from 'react-native'
-import Ionicons from 'react-native-vector-icons/Ionicons'
+// import Ionicons from 'react-native-vector-icons/Ionicons'
 import {useNavigation} from '@react-navigation/native'
+// import image from '../../src/assets/home/'
 
 function FilterTab () {
   const navigation = useNavigation()
 
   const subjects = [
     {
-      name: 'Hindi',
-      icon: <Ionicons name='language-outline' size={18} color='#fff' />,
-      //  Navigate: 'HindiScreen',
-    },
-    {
-      name: 'English',
-      icon: <Ionicons name='book-outline' size={18} color='#fff' />,
-      //  Navigate: 'EnglishScreen',
-    },
-    {
-      name: 'Physics',
-      icon: <Ionicons name='speedometer-outline' size={18} color='#fff' />,
-      //  Navigate: 'PhysicsScreen',
-    },
-    {
-      name: 'Chemistry',
-      icon: <Ionicons name='flask-outline' size={18} color='#fff' />,
-      //  Navigate: 'ChemistryScreen',
+      name: 'GK',
+      icon: require('../../src/assets/home/knowledge.png'),
     },
     {
       name: 'Math',
-      icon: <Ionicons name='calculator-outline' size={18} color='#fff' />,
-      //  Navigate: 'MathScreen',
+      icon: require('../../src/assets/home/54394475-calculate-button-01.png'),
     },
     {
-      name: 'Biology',
-      icon: <Ionicons name='leaf-outline' size={18} color='#fff' />,
-      //  Navigate: 'BiologyScreen',
-    },
-    {
-      name: 'Computer',
-      icon: <Ionicons name='laptop-outline' size={18} color='#fff' />,
-      //  Navigate: 'ComputerScreen',
+      name: 'Resoning',
+      icon: require('../../src/assets/home/reasoning.png'),
     },
   ]
 
@@ -59,7 +38,15 @@ function FilterTab () {
               // onPress={() => navigation.navigate(item.Navigate)}
               key={index}
               style={styles.iconItem}>
-              {item.icon}
+              {/* {item.icon} */}
+              <View style={styles.imageCoin}>
+                <Image
+                  source={item.icon} // Use directly from screen config
+                  style={styles.image} // Use consistent styling
+                  resizeMode='contain'
+                />
+              </View>
+
               <Text style={styles.iconLabel}>{item.name}</Text>
             </TouchableOpacity>
           ))}
@@ -73,22 +60,42 @@ export default FilterTab
 
 const styles = StyleSheet.create({
   iconContainer: {
-    height: 60,
-    backgroundColor: '#171449',
-    paddingHorizontal: 10,
+    // height: 60,
+    backgroundColor: '#fff',
+    // paddingHorizontal: 10,
     borderRadius: 10,
   },
   iconItem: {
-    width: 60,
-    justifyContent: 'center',
+    // width: 60,
+    justifyContent: 'space-between',
     alignItems: 'center',
     marginHorizontal: 8,
+    width: '100',
+    paddingVertical: 10,
+    // backgroundColor: none,
   },
   iconLabel: {
-    fontSize: 12,
-    color: '#fff',
+    fontSize: 14,
+    // color: '#fff',
     marginTop: 2,
     textAlign: 'center',
     // fontWeight:500
+  },
+  image: {
+    // height: 40,
+    width: 35,
+    marginBottom: 10,
+
+    // borderRadius: 30,
+    // padding:10
+  },
+  imageCoin: {
+    padding: 5,
+    backgroundColor: '#B5C7EB',
+    borderRadius: 30,
+    alignItems:'center',
+    justifyContent:'center',
+    width:50,
+    height:50
   },
 })

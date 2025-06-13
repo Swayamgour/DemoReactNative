@@ -28,7 +28,7 @@ const SwiperImage = () => {
 
             style={styles.slide}>
             <Image
-              source={require('../assets/image/swiperImage.jpeg')}
+              source={require('../assets/home/Banner-01.png')}
               style={styles.image}
               resizeMode='cover'
             />
@@ -41,7 +41,7 @@ const SwiperImage = () => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 100,
+    height: 160,
     marginVertical: 10,
     overflow: 'hidden',
     paddingHorizontal:15 

@@ -42,7 +42,7 @@ const EWLLogin = () => {
         keyboardShouldPersistTaps='handled'
         showsVerticalScrollIndicator={false}>
         <LinearGradient
-          colors={['#171449', '#3F4C77']}
+          colors={['#171449', '#35419A']}
           start={{x: 0, y: 0}}
           end={{x: 1, y: 0}}
           style={styles.gradient}>
@@ -89,7 +89,7 @@ const EWLLogin = () => {
               onPress={() => navigate.navigate('otp')}
               style={styles.signInButton}>
               <LinearGradient
-                colors={['#171449', '#3F4C77']}
+                colors={['#171449', '#35419A']}
                 start={{x: 0, y: 0}}
                 end={{x: 1, y: 0}}
                 style={styles.signInGradient}>

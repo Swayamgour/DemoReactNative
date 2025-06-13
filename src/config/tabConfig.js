@@ -1,35 +1,33 @@
 // config/tabConfig.js
-import Icon from 'react-native-vector-icons/FontAwesome'
-
 export const tabScreens = [
-    {
-      name: 'Dashboard',
-      component: require('../screens/Dashboard').default,
-      icon: 'home',
-      options: { headerShown: false }
-    },
+  {
+    name: 'Dashboard',
+    component: require('../screens/Dashboard').default,
+    icon: require('../../src/assets/home/courses-01.png'),  // Use require() instead of string path
+    options: {headerShown: false},
+  },
   {
     name: 'Winner',
     component: require('../screens/WinnerPage').default,
-    icon: 'trophy',
+    icon: require('../../src/assets/home/winnings-01.png'),  // Use require() for all icons
     options: {headerShown: false},
   },
   {
     name: 'Quiz',
     component: require('../screens/MyQuizPage').default,
-    icon: 'puzzle-piece',
+    icon: require('../../src/assets/home/Home-01.png'),
     options: {headerShown: false},
   },
   {
     name: 'Rewards',
     component: require('../screens/RewordPage').default,
-    icon: 'gift',
+    icon: require('../../src/assets/home/ReferEarn-01.png'),
     options: {headerShown: false},
   },
   {
     name: 'News',
     component: require('../screens/News').default,
-    icon: 'newspaper-o',
+    icon: require('../../src/assets/home/News-01.png'),
     options: {headerShown: false},
   },
 ]
@@ -43,6 +41,6 @@ export const tabNavigatorConfig = {
     borderTopWidth: 1,
     borderColor: '#ddd',
     paddingVertical: 8,
-    height:70,
+    height: 70,
   },
 }

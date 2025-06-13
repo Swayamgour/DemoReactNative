@@ -17,12 +17,21 @@ import CuponCard from '../components/CuponCard'
 import {useNavigation} from '@react-navigation/native'
 
 // Enable LayoutAnimation on Android
-if (
-  Platform.OS === 'android' &&
-  UIManager.setLayoutAnimationEnabledExperimental
-) {
-  UIManager.setLayoutAnimationEnabledExperimental(true)
+// if (
+//   Platform.OS === 'android' &&
+//   UIManager.setLayoutAnimationEnabledExperimental
+// ) {
+//   UIManager.setLayoutAnimationEnabledExperimental(true)
+// }
+
+if (Platform.OS === 'android') {
+  if (UIManager.unstable_enableLayoutAnimations) {
+    UIManager.unstable_enableLayoutAnimations(true); // New Architecture
+  } else if (UIManager.setLayoutAnimationEnabledExperimental) {
+    UIManager.setLayoutAnimationEnabledExperimental(true); // Old Architecture
+  }
 }
+
 
 const Wallet = () => {
   const navigate = useNavigation()
