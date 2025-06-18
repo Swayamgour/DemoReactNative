@@ -32,6 +32,7 @@ import Welcome from './src/screens/Welcome'
 import EWLLogin from './src/screens/EWLLogin'
 import EWLVerify from './src/screens/EWLVerify'
 import RegistrationForm from './src/screens/RegistrationForm'
+import TodoList from './src/screens/TodoList'
 
 const Stack = createNativeStackNavigator()
 
@@ -43,7 +44,7 @@ export default function App () {
 
         <NavigationContainer>
           {/* <AppTabs /> */}
-          <Stack.Navigator initialRouteName='DrawerNavigation'>
+          <Stack.Navigator initialRouteName='Splash'>
             <Stack.Screen
               name='Tab'
               component={Tab}
@@ -167,6 +168,12 @@ export default function App () {
             <Stack.Screen
               name='kycPage'
               component={KYCScreen}
+              // options={{title: 'Invite  & Earn '}} // optional
+              options={{title: 'Kyc Page'}}
+            />
+            <Stack.Screen
+              name='todo'
+              component={TodoList}
               // options={{title: 'Invite  & Earn '}} // optional
               options={{title: 'Kyc Page'}}
             />

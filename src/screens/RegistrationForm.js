@@ -16,6 +16,7 @@ import LinearGradient from 'react-native-linear-gradient'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import DateTimePicker from '@react-native-community/datetimepicker' // You'll need to install this package
 import SocialMedia from '../components/SocialMedia'
+import {useNavigation} from '@react-navigation/native'
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
@@ -25,6 +26,8 @@ const RegistrationForm = () => {
     gender: '',
     agreeTerms: false,
   })
+
+  const navigate = useNavigation()
 
   const [showDatePicker, setShowDatePicker] = useState(false)
   const [date, setDate] = useState(new Date())
@@ -38,7 +41,9 @@ const RegistrationForm = () => {
   }
 
   const handleSubmit = () => {
-    console.log('Form submitted:', formData)
+    // console.log('Form submitted:', formData)
+    navigate.navigate('DrawerNavigation')
+
     // Add your form submission logic here
   }
 
@@ -186,19 +191,23 @@ const RegistrationForm = () => {
                   )}
                 </View>
               </TouchableOpacity>
-              <Text style={styles.termsText}>
-                Agree with{' '}
-                <Text style={styles.termsLink}>Terms & Conditions</Text>
-              </Text>
+              <TouchableOpacity onPress={toggleAgreement}>
+                <Text style={styles.termsText}>
+                  Agree with{' '}
+                  <Text style={styles.termsLink}>Terms & Conditions</Text>
+                </Text>
+              </TouchableOpacity>
             </View>
 
             {/* Submit Button */}
             <TouchableOpacity
               style={styles.submitButton}
+
               onPress={handleSubmit}
               disabled={!formData.agreeTerms}>
               <LinearGradient
                 colors={['#171449', '#35419A']}
+                
                 start={{x: 0, y: 0}}
                 end={{x: 1, y: 0}}
                 style={styles.buttonGradient}>
