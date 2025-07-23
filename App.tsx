@@ -33,6 +33,8 @@ import EWLLogin from './src/screens/EWLLogin'
 import EWLVerify from './src/screens/EWLVerify'
 import RegistrationForm from './src/screens/RegistrationForm'
 import TodoList from './src/screens/TodoList'
+import SearchPage from './src/components/SearchPage'
+import ChatWithUs from './src/components/ChatWithUs'
 
 const Stack = createNativeStackNavigator()
 
@@ -146,7 +148,7 @@ export default function App () {
             <Stack.Screen
               name='Notification'
               component={NotificationPage}
-              options={{title: 'Notification '}} // optional
+              options={{headerShown: false}} // optional
             />
             <Stack.Screen
               name='AddCash'
@@ -176,6 +178,17 @@ export default function App () {
               component={TodoList}
               // options={{title: 'Invite  & Earn '}} // optional
               options={{title: 'Kyc Page'}}
+            />
+
+            <Stack.Screen
+              name='SearchPage'
+              component={SearchPage}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name='ChatWithUs'
+              component={ChatWithUs}
+              options={{headerShown: false}}
             />
           </Stack.Navigator>
         </NavigationContainer>

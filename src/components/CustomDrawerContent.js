@@ -77,7 +77,13 @@ export default function CustomDrawerContent ({navigation}) {
             </TouchableOpacity>
           </TouchableOpacity>
 
-          <DrawerItem icon='search-outline' label='Search' />
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('SearchPage')
+              navigation.closeDrawer()
+            }}>
+            <DrawerItem icon='search-outline' label='Search' />
+          </TouchableOpacity>
           <DrawerItem icon='gift-outline' label='My Cards' dot />
           <DrawerItem icon='game-controller-outline' label='How to Play' />
           <DrawerItem icon='star-outline' label='Today Leaderboard' />
@@ -89,8 +95,21 @@ export default function CustomDrawerContent ({navigation}) {
           <DrawerItem icon='ellipsis-horizontal-outline' label='More' />
         </View>
         <View style={styles.footer}>
-          <Text style={styles.footerItem}>Helpdesk</Text>
-          <Text style={styles.footerItem}>Chat With Us</Text>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('ChatWithUs')
+              navigation.closeDrawer()
+            }}>
+            <Text style={styles.footerItem}>Helpdesk</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('ChatWithUs')
+              navigation.closeDrawer()
+            }}>
+            <Text style={styles.footerItem}>Chat With Us</Text>
+            {/* <Text style={styles.footerItem}>Helpdesk</Text> */}
+          </TouchableOpacity>
         </View>
 
         <View>
@@ -131,8 +150,6 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 10,
-
-    
   },
 
   avatar: {

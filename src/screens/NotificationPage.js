@@ -277,6 +277,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderBottomWidth: 1,
     borderBottomColor: '#eee',
+    paddingTop: Platform.OS === 'ios' ? 60 : 60,
   },
   headerTitle: {
     fontSize: 28,
@@ -332,13 +333,17 @@ const styles = StyleSheet.create({
   notificationCard: {
     backgroundColor: '#fff',
     borderRadius: 16,
+
+    
+    // border:1px
     padding: 15,
     marginBottom: 15,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.05,
     shadowRadius: 6,
-    elevation: 2,
+    
+    // elevation: 2,
   },
   unreadNotification: {
     borderLeftWidth: 4,

@@ -35,7 +35,7 @@ const Login = ({navigation}) => {
     //   routes: [{name: 'DrawerNavigation'}],
     // })
     if (phone.length < 10 || otp.length < 4) {
-      alert('Please enter valid phone number and OTP')
+      alert('Please enter valid phone number and OTP')  
       return
     }
 

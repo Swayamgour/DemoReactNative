@@ -66,7 +66,9 @@ const EWLLogin = () => {
               onFocus={handleFocus}
               onBlur={handleBlur}
               onChangeText={setMobile}
+              maxLength={10}
               style={styles.input}
+              autoFocus={true}
               theme={{
                 roundness: 10,
                 colors: {
